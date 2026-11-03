@@ -357,4 +357,86 @@
     }
     bind(f, run);
   })();
+  /* ── 10. 자동차 취득세 ───────────────────────────────── */
+  (function () {
+    var f = $('calc-acqtax');
+    if (!f) return;
+    // 지방세법 제12조, 지방세특례제한법 제66조·제67조 (2026.11 시행 기준)
+    var TYPES = {
+      car:    { name: '일반 승용차', rate: 0.07, cut: 0 },
+      hybrid: { name: '하이브리드', rate: 0.07, cut: 0, note: '하이브리드 감면은 2024년 12월 31일에 끝나 일반 승용차와 같습니다.' },
+      light:  { name: '경차', rate: 0.04, cut: 750000, until: '2027-12-31', note: '취득일부터 1년 안에 영업용으로 쓰면 감면액을 다시 냅니다.' },
+      ev:     { name: '전기차', rate: 0.07, cut: 1400000, until: '2026-12-31', note: '보조금 반영 여부에 따라 견적서 금액과 다를 수 있습니다.' },
+      h2:     { name: '수소전기차', rate: 0.07, cut: 1400000, until: '2027-12-31' }
+    };
+    function run() {
+      var price = num('at-price'), kind = $('at-kind').value, t = TYPES[$('at-type').value];
+      if (!price) { $('at-out').innerHTML = '<p class="note">차량 가격을 넣으면 계산됩니다.</p>'; return; }
+      var base = kind === 'new' ? Math.round(price / 1.1) : price;
+      var tax = Math.floor(base * t.rate / 10) * 10;
+      var expired = t.until && new Date() > new Date(t.until + 'T23:59:59+09:00');
+      var cut = expired ? 0 : Math.min(t.cut, tax);
+      var pay = tax - cut;
+      var list = [
+        [kind === 'new' ? '과세표준 (부가세 뺀 가격)' : '과세표준 (실제 거래 금액)', won(base)],
+        ['세율', Math.round(t.rate * 1000) / 10 + '% (' + t.name + ')'],
+        ['산출 취득세', won(tax)]
+      ];
+      if (t.cut) list.push(['감면 (' + won(t.cut) + ' 한도, ' + t.until.replace(/-/g, '.') + '까지)', expired ? '기한 지남' : '− ' + won(cut)]);
+      var html = '<p class="big">' + won(pay) + '<small>내야 할 취득세</small></p>' + rows(list);
+      var notes = [];
+      if (kind === 'used') notes.push('중고차는 거래 금액이 시가표준액보다 낮으면 시가표준액으로 계산합니다.');
+      if (t.note) notes.push(t.note);
+      if (expired) notes.push('감면 기한이 지났습니다. 연장 여부는 위택스나 관할 시·군·구청에서 확인하세요.');
+      notes.push('공채 매입, 번호판·등록 수수료, 탁송료는 별도입니다.');
+      html += '<p class="note">' + notes.join(' ') + '</p>';
+      $('at-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
+
+  /* ── 11. 자동차세 ─────────────────────────────────────── */
+  (function () {
+    var f = $('calc-cartax');
+    if (!f) return;
+    // 지방세법 제127조·제128조, 시행령 제122조·제125조 (2026.11 시행 기준)
+    function run() {
+      var ev = $('ct-fuel').value === 'ev', cc = Math.round(num('ct-cc'));
+      var y0 = Math.round(num('ct-year')), half = $('ct-half').value, Y = Math.round(num('ct-tax'));
+      if (!ev && !cc) { $('ct-out').innerHTML = '<p class="note">배기량을 넣으면 계산됩니다.</p>'; return; }
+      if (!y0 || !Y || Y < y0) { $('ct-out').innerHTML = '<p class="note">세금을 낼 연도는 최초 등록 연도와 같거나 그 이후여야 합니다.</p>'; return; }
+      var A, h1, h2, age1, age2;
+      if (ev) {
+        A = 100000; h1 = h2 = A / 2;
+      } else {
+        A = cc * (cc <= 1000 ? 80 : cc <= 1600 ? 140 : 200);
+        age2 = Y - y0 + 1;
+        age1 = half === '2' ? Y - y0 : age2;
+        var part = function (n) { n = Math.min(Math.max(n, 2), 12); return A / 2 - A / 2 * 0.05 * (n - 2); };
+        h1 = part(age1); h2 = part(age2);
+      }
+      var year = h1 + h2;
+      var edu = year * 0.3;
+      var leap = (Y % 4 === 0 && Y % 100 !== 0) || Y % 400 === 0;
+      var days = leap ? 335 : 334, total = leap ? 366 : 365;
+      var disc = year * days / total * 0.05;                 // 1월 연납: 2.1~12.31분 × 연 5%
+      var janTax = year - disc, janAll = janTax * 1.3;
+      var list = [
+        ['자동차세 (1년)', won(year) + (ev ? ' (전기차 정액)' : '')],
+        ['지방교육세 (30%)', won(edu)],
+        ['6월 고지 (상반기)', won(h1 * 1.3)],
+        ['12월 고지 (하반기)', won(h2 * 1.3)],
+        ['1월 연납 시 (약 ' + (days / total * 5).toFixed(1) + '% 할인)', won(janAll)]
+      ];
+      var html = '<p class="big">' + won(year + edu) + '<small>' + Y + '년 1년 자동차세 (교육세 포함)</small></p>' + rows(list);
+      var notes = [];
+      if (!ev) notes.push('차령 ' + (age1 === age2 ? age2 + '년' : '상반기 ' + age1 + '년 · 하반기 ' + age2 + '년') + ', 경감률 ' + (age1 === age2 ? Math.round((1 - h2 / (A / 2)) * 100) + '%' : Math.round((1 - h1 / (A / 2)) * 100) + '% · ' + Math.round((1 - h2 / (A / 2)) * 100) + '%') + '.');
+      if (Y === y0) notes.push('처음 등록한 해에는 등록일부터 날수만큼만 냅니다(위 금액보다 적음).');
+      if (!ev && year <= 100000) notes.push('1년 자동차세가 10만원 이하라 6월에 1년치가 한 번에 고지될 수 있습니다.');
+      notes.push('표준세율 기준이며 지자체 조례·원 단위 절사로 고지서와 조금 다를 수 있습니다.');
+      html += '<p class="note">' + notes.join(' ') + '</p>';
+      $('ct-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
 })();
