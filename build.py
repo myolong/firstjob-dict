@@ -24,7 +24,7 @@ SITE_TAGLINE = "사회초년생을 위한 월급·회사생활 사전"
 CONTACT_EMAIL = "salimdict.help@gmail.com"  # 문의용 이메일 (살림사전과 공용, 본업과 분리된 주소)
 ADSENSE_CLIENT = "ca-pub-5781805498180631"  # 예: "ca-pub-1234567890123456" → 광고 스크립트·ads.txt 생성
 GOOGLE_VERIFICATION = ""  # 구글 서치 콘솔 HTML 태그의 content 값
-NAVER_VERIFICATION = ""  # 네이버 서치어드바이저 HTML 태그의 content 값
+NAVER_VERIFICATION = "ea2d6bc14b047b78f80f6edeec20bbe615a30359"  # 네이버 서치어드바이저 HTML 태그의 content 값
 UPDATED = date.today().isoformat()
 # ───────────────────────────────────────────────────────────────────────
 
