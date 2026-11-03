@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://firstjobdict.com/sitemap.xml
+Sitemap: https://myolong.github.io/firstjob-dict/sitemap.xml
