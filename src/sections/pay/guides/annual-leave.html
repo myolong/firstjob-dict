@@ -1,0 +1,38 @@
+---
+title: 연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함)
+description: 입사일과 기준일을 넣으면 1년 미만 신입의 월차형 연차와 1년 이상 근속자의 연차 개수를 근로기준법 기준으로 계산합니다.
+short: 연차 계산기
+calc: yes
+order: 5
+---
+<p>신입이라면 "입사하고 바로 연차가 있나요?"가 가장 먼저 궁금합니다. 1년이 안 됐어도 한 달 개근할 때마다 1일씩 생깁니다.</p>
+
+<form class="calc" id="calc-leave" onsubmit="return false">
+  <div class="fields">
+    <label>입사일<input id="lv-start" type="date" value="2026-03-02"></label>
+    <label>기준일 (비우면 오늘)<input id="lv-base" type="date"></label>
+  </div>
+  <div class="result" id="lv-out" aria-live="polite"></div>
+</form>
+
+<h2>근속연수별 연차 개수</h2>
+<table>
+<thead><tr><th>근속</th><th>연차</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td>1년 미만</td><td>매달 1일 (최대 11일)</td><td>한 달 개근 시 1일</td></tr>
+<tr><td>1년 이상</td><td>15일</td><td>직전 1년 출근율 80% 이상</td></tr>
+<tr><td>3년 이상</td><td>16일</td><td>2년마다 1일씩 추가</td></tr>
+<tr><td>5년 이상</td><td>17일</td><td></td></tr>
+<tr><td>21년 이상</td><td>25일</td><td>최대 25일</td></tr>
+</tbody>
+</table>
+
+<h2>꼭 알아둘 점</h2>
+<ul>
+<li><strong>5인 미만 사업장</strong>은 법정 연차가 적용되지 않습니다. 회사 규정에 따로 정한 휴가만 있습니다.</li>
+<li><strong>주 15시간 미만</strong> 근로자는 연차가 생기지 않습니다.</li>
+<li><strong>1년 미만 연차</strong>는 입사일부터 1년 안에 써야 하고, 회사가 사용 촉진을 했다면 수당 없이 사라질 수 있습니다.</li>
+<li><strong>회계연도 기준</strong>(매년 1월 1일에 일괄 부여)으로 주는 회사도 있습니다. 이 경우 퇴사할 때 입사일 기준보다 불리하지 않게 정산해야 합니다.</li>
+<li>쓰지 못한 연차는 <strong>연차수당</strong>(1일 통상임금 × 남은 일수)으로 받을 수 있습니다.</li>
+</ul>
+<p>연차를 낼 때 쓰는 메일·메신저 문구는 <a href="/office/email-basics/">회사 메일 쓰는 법</a>에 정리했습니다.</p>

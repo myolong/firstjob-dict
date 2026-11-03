@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함) | 첫직장사전</title>
+<meta name="description" content="입사일과 기준일을 넣으면 1년 미만 신입의 월차형 연차와 1년 이상 근속자의 연차 개수를 근로기준법 기준으로 계산합니다.">
+<link rel="canonical" href="https://myolong.github.io/firstjob-dict/pay/annual-leave/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="첫직장사전">
+<meta property="og:title" content="연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함) | 첫직장사전">
+<meta property="og:description" content="입사일과 기준일을 넣으면 1년 미만 신입의 월차형 연차와 1년 이상 근속자의 연차 개수를 근로기준법 기준으로 계산합니다.">
+<meta property="og:url" content="https://myolong.github.io/firstjob-dict/pay/annual-leave/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#f3f1ea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="icon" href="/firstjob-dict/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/firstjob-dict/assets/style.css">
+<link rel="alternate" type="application/rss+xml" title="첫직장사전" href="/firstjob-dict/rss.xml">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5781805498180631" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함)", "description": "입사일과 기준일을 넣으면 1년 미만 신입의 월차형 연차와 1년 이상 근속자의 연차 개수를 근로기준법 기준으로 계산합니다.", "dateModified": "2026-11-03", "inLanguage": "ko", "mainEntityOfPage": "https://myolong.github.io/firstjob-dict/pay/annual-leave/", "author": {"@type": "Organization", "name": "첫직장사전"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://myolong.github.io/firstjob-dict/"}, {"@type": "ListItem", "position": 2, "name": "월급·근로 계산기와 2026년 기준표", "item": "https://myolong.github.io/firstjob-dict/pay/"}, {"@type": "ListItem", "position": 3, "name": "연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함)", "item": "https://myolong.github.io/firstjob-dict/pay/annual-leave/"}]}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/firstjob-dict/">첫직장사전</a>
+    <span class="tagline">사회초년생을 위한 월급·회사생활 사전</span>
+  </div>
+  <nav class="menu" aria-label="메뉴"><div class="wrap"><a href="/firstjob-dict/pay/" aria-current="page">월급·계산기</a><a href="/firstjob-dict/youth/">청년 지원제도</a><a href="/firstjob-dict/first-home/">첫 자취</a><a href="/firstjob-dict/office/">회사 용어·예절</a><a href="/firstjob-dict/first-day/">첫 출근</a><a href="/firstjob-dict/first-salary/">첫 월급 관리</a></div></nav>
+</header>
+<main class="wrap">
+
+<nav class="crumbs" aria-label="위치"><a href="/firstjob-dict/">홈</a> › <a href="/firstjob-dict/pay/">월급·근로 계산기와 2026년 기준표</a></nav>
+<article class="article">
+  <h1>연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함)</h1>
+  <p class="meta">최종 업데이트 2026-11-03</p>
+  <p>신입이라면 "입사하고 바로 연차가 있나요?"가 가장 먼저 궁금합니다. 1년이 안 됐어도 한 달 개근할 때마다 1일씩 생깁니다.</p>
+
+<form class="calc" id="calc-leave" onsubmit="return false">
+  <div class="fields">
+    <label>입사일<input id="lv-start" type="date" value="2026-03-02"></label>
+    <label>기준일 (비우면 오늘)<input id="lv-base" type="date"></label>
+  </div>
+  <div class="result" id="lv-out" aria-live="polite"></div>
+</form>
+
+<h2>근속연수별 연차 개수</h2>
+<table>
+<thead><tr><th>근속</th><th>연차</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td>1년 미만</td><td>매달 1일 (최대 11일)</td><td>한 달 개근 시 1일</td></tr>
+<tr><td>1년 이상</td><td>15일</td><td>직전 1년 출근율 80% 이상</td></tr>
+<tr><td>3년 이상</td><td>16일</td><td>2년마다 1일씩 추가</td></tr>
+<tr><td>5년 이상</td><td>17일</td><td></td></tr>
+<tr><td>21년 이상</td><td>25일</td><td>최대 25일</td></tr>
+</tbody>
+</table>
+
+<h2>꼭 알아둘 점</h2>
+<ul>
+<li><strong>5인 미만 사업장</strong>은 법정 연차가 적용되지 않습니다. 회사 규정에 따로 정한 휴가만 있습니다.</li>
+<li><strong>주 15시간 미만</strong> 근로자는 연차가 생기지 않습니다.</li>
+<li><strong>1년 미만 연차</strong>는 입사일부터 1년 안에 써야 하고, 회사가 사용 촉진을 했다면 수당 없이 사라질 수 있습니다.</li>
+<li><strong>회계연도 기준</strong>(매년 1월 1일에 일괄 부여)으로 주는 회사도 있습니다. 이 경우 퇴사할 때 입사일 기준보다 불리하지 않게 정산해야 합니다.</li>
+<li>쓰지 못한 연차는 <strong>연차수당</strong>(1일 통상임금 × 남은 일수)으로 받을 수 있습니다.</li>
+</ul>
+<p>연차를 낼 때 쓰는 메일·메신저 문구는 <a href="/firstjob-dict/office/email-basics/">회사 메일 쓰는 법</a>에 정리했습니다.</p>
+  <p class="disclaimer">계산기와 기준표는 일반적인 근로자를 기준으로 한 추정치입니다. 실제 공제액은 회사의 급여 규정, 비과세 항목, 부양가족 신고 내용에 따라 다를 수 있으니 급여명세서와 국민연금공단·국민건강보험공단·고용노동부 안내를 우선해 주세요.</p>
+</article>
+<script src="/firstjob-dict/assets/calc.js" defer></script>
+<aside class="related">
+  <h2>함께 보면 좋은 가이드</h2><ul class="cards">
+<li><a href="/firstjob-dict/pay/weekly-holiday-pay/"><strong>주휴수당 계산기 - 2026 최저시급 10,320원 기준</strong><span>시급과 일주일 근무시간을 넣으면 주휴시간, 1주·한 달 주휴수당을 계산합니다. 주휴수당을 받는 조건과 단시간 근로자 계산법도 정리했습니다.</span></a></li>
+<li><a href="/firstjob-dict/pay/take-home/"><strong>2026 월급 실수령액 계산기 - 4대보험·소득세 빼고 얼마 받을까</strong><span>연봉이나 월급을 넣으면 국민연금, 건강보험, 장기요양, 고용보험, 소득세를 뺀 한 달 실수령액을 2026년 요율로 계산합니다.</span></a></li>
+<li><a href="/firstjob-dict/pay/salary-convert/"><strong>연봉·월급·시급 환산 계산기 - 2026 최저임금 비교까지</strong><span>연봉, 월급, 시급 중 하나를 넣으면 나머지 두 가지로 바꿔 주고 2026년 최저임금 10,320원보다 높은지 확인해 줍니다.</span></a></li>
+</ul>
+  <p><a class="btn" href="/firstjob-dict/pay/">월급·근로 계산기와 2026년 기준표 전체 보기</a></p>
+</aside>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>이 사이트의 계산 결과와 정보는 일반적인 상황을 기준으로 한 참고용입니다. 실제 금액과 자격은 회사 급여명세서와 고용노동부·고용24·국민연금공단 등 공식 안내를 우선해 주세요.</p>
+    <p class="footer-links">
+      <a href="/firstjob-dict/about/">사이트 소개</a> ·
+      <a href="/firstjob-dict/privacy/">개인정보처리방침</a> ·
+      <a href="/firstjob-dict/contact/">문의</a>
+    </p>
+    <p>© 2026 첫직장사전</p>
+  </div>
+</footer>
+</body>
+</html>

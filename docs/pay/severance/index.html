@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>퇴직금 계산기 - 입사일·퇴사일·월급으로 2026 예상 퇴직금 | 첫직장사전</title>
+<meta name="description" content="입사일, 마지막 근무일, 최근 3개월 월급과 상여금을 넣으면 1일 평균임금과 예상 퇴직금을 계산합니다. 받는 조건과 지급 기한도 정리했습니다.">
+<link rel="canonical" href="https://myolong.github.io/firstjob-dict/pay/severance/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="첫직장사전">
+<meta property="og:title" content="퇴직금 계산기 - 입사일·퇴사일·월급으로 2026 예상 퇴직금 | 첫직장사전">
+<meta property="og:description" content="입사일, 마지막 근무일, 최근 3개월 월급과 상여금을 넣으면 1일 평균임금과 예상 퇴직금을 계산합니다. 받는 조건과 지급 기한도 정리했습니다.">
+<meta property="og:url" content="https://myolong.github.io/firstjob-dict/pay/severance/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#f3f1ea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="icon" href="/firstjob-dict/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/firstjob-dict/assets/style.css">
+<link rel="alternate" type="application/rss+xml" title="첫직장사전" href="/firstjob-dict/rss.xml">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5781805498180631" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "퇴직금 계산기 - 입사일·퇴사일·월급으로 2026 예상 퇴직금", "description": "입사일, 마지막 근무일, 최근 3개월 월급과 상여금을 넣으면 1일 평균임금과 예상 퇴직금을 계산합니다. 받는 조건과 지급 기한도 정리했습니다.", "dateModified": "2026-11-03", "inLanguage": "ko", "mainEntityOfPage": "https://myolong.github.io/firstjob-dict/pay/severance/", "author": {"@type": "Organization", "name": "첫직장사전"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://myolong.github.io/firstjob-dict/"}, {"@type": "ListItem", "position": 2, "name": "월급·근로 계산기와 2026년 기준표", "item": "https://myolong.github.io/firstjob-dict/pay/"}, {"@type": "ListItem", "position": 3, "name": "퇴직금 계산기 - 입사일·퇴사일·월급으로 2026 예상 퇴직금", "item": "https://myolong.github.io/firstjob-dict/pay/severance/"}]}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/firstjob-dict/">첫직장사전</a>
+    <span class="tagline">사회초년생을 위한 월급·회사생활 사전</span>
+  </div>
+  <nav class="menu" aria-label="메뉴"><div class="wrap"><a href="/firstjob-dict/pay/" aria-current="page">월급·계산기</a><a href="/firstjob-dict/youth/">청년 지원제도</a><a href="/firstjob-dict/first-home/">첫 자취</a><a href="/firstjob-dict/office/">회사 용어·예절</a><a href="/firstjob-dict/first-day/">첫 출근</a><a href="/firstjob-dict/first-salary/">첫 월급 관리</a></div></nav>
+</header>
+<main class="wrap">
+
+<nav class="crumbs" aria-label="위치"><a href="/firstjob-dict/">홈</a> › <a href="/firstjob-dict/pay/">월급·근로 계산기와 2026년 기준표</a></nav>
+<article class="article">
+  <h1>퇴직금 계산기 - 입사일·퇴사일·월급으로 2026 예상 퇴직금</h1>
+  <p class="meta">최종 업데이트 2026-11-03</p>
+  <p>1년 이상 일하고 그만두면 퇴직금을 받습니다. 금액은 "퇴직 전 3개월 동안 받은 임금"을 기준으로 정해지므로, 마지막 3개월 월급이 중요합니다.</p>
+
+<form class="calc" id="calc-severance" onsubmit="return false">
+  <div class="fields">
+    <label>입사일<input id="sv-start" type="date" value="2024-03-02"></label>
+    <label>마지막 근무일<input id="sv-end" type="date" value="2026-10-31"></label>
+    <label>최근 3개월 평균 월급 (세전)<input id="sv-pay" inputmode="numeric" data-money value="3,000,000"><span class="hint">기본급과 매달 받는 수당 포함</span></label>
+    <label>최근 1년 상여금 합계<input id="sv-bonus" inputmode="numeric" data-money value="0"></label>
+    <label>최근 1년 연차수당<input id="sv-leave" inputmode="numeric" data-money value="0"></label>
+  </div>
+  <div class="result" id="sv-out" aria-live="polite"></div>
+</form>
+
+<h2>퇴직금 계산 공식</h2>
+<p><strong>퇴직금 = 1일 평균임금 × 30일 × (재직일수 ÷ 365)</strong></p>
+<ul>
+<li><strong>1일 평균임금</strong>은 퇴직 전 3개월 임금 총액을 그 3개월의 날짜 수(89~92일)로 나눈 금액입니다.</li>
+<li>1년 동안 받은 상여금과 연차수당은 그중 3개월분(3/12)만 넣습니다.</li>
+<li>이렇게 구한 평균임금이 통상임금보다 적으면 통상임금으로 계산합니다.</li>
+</ul>
+
+<h2>퇴직금을 받는 조건</h2>
+<ul>
+<li>같은 회사에서 계속 일한 기간이 1년 이상</li>
+<li>4주 평균 1주 근로시간이 15시간 이상</li>
+<li>정규직, 계약직, 아르바이트 구분 없이 위 두 가지만 맞으면 받습니다. 5인 미만 사업장도 같습니다.</li>
+</ul>
+
+<h2>언제, 어떻게 받나요</h2>
+<p>회사는 퇴직 후 14일 안에 퇴직금을 줘야 합니다. 당사자끼리 합의하면 늦출 수 있습니다. 회사에 퇴직연금(DB·DC형)이 있다면 본인 명의 IRP 계좌로 들어오고, 55세 전에 IRP를 해지하면 퇴직소득세를 떼고 받습니다.</p>
+<p>퇴사 후 실업급여를 받을 수 있는지는 <a href="/firstjob-dict/pay/unemployment/">실업급여 계산기</a>에서 확인해 보세요.</p>
+  <p class="disclaimer">계산기와 기준표는 일반적인 근로자를 기준으로 한 추정치입니다. 실제 공제액은 회사의 급여 규정, 비과세 항목, 부양가족 신고 내용에 따라 다를 수 있으니 급여명세서와 국민연금공단·국민건강보험공단·고용노동부 안내를 우선해 주세요.</p>
+</article>
+<script src="/firstjob-dict/assets/calc.js" defer></script>
+<aside class="related">
+  <h2>함께 보면 좋은 가이드</h2><ul class="cards">
+<li><a href="/firstjob-dict/pay/unemployment/"><strong>2026 실업급여 계산기 - 하루 얼마, 며칠 받을 수 있나</strong><span>퇴직 전 월급, 나이, 고용보험 가입기간으로 2026년 기준 1일 구직급여와 받을 수 있는 날, 총액을 계산합니다. 받는 조건도 정리했습니다.</span></a></li>
+<li><a href="/firstjob-dict/pay/annual-leave/"><strong>연차 계산기 - 입사일로 내 연차 개수 확인 (1년 미만 신입 포함)</strong><span>입사일과 기준일을 넣으면 1년 미만 신입의 월차형 연차와 1년 이상 근속자의 연차 개수를 근로기준법 기준으로 계산합니다.</span></a></li>
+<li><a href="/firstjob-dict/pay/weekly-holiday-pay/"><strong>주휴수당 계산기 - 2026 최저시급 10,320원 기준</strong><span>시급과 일주일 근무시간을 넣으면 주휴시간, 1주·한 달 주휴수당을 계산합니다. 주휴수당을 받는 조건과 단시간 근로자 계산법도 정리했습니다.</span></a></li>
+</ul>
+  <p><a class="btn" href="/firstjob-dict/pay/">월급·근로 계산기와 2026년 기준표 전체 보기</a></p>
+</aside>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>이 사이트의 계산 결과와 정보는 일반적인 상황을 기준으로 한 참고용입니다. 실제 금액과 자격은 회사 급여명세서와 고용노동부·고용24·국민연금공단 등 공식 안내를 우선해 주세요.</p>
+    <p class="footer-links">
+      <a href="/firstjob-dict/about/">사이트 소개</a> ·
+      <a href="/firstjob-dict/privacy/">개인정보처리방침</a> ·
+      <a href="/firstjob-dict/contact/">문의</a>
+    </p>
+    <p>© 2026 첫직장사전</p>
+  </div>
+</footer>
+</body>
+</html>
