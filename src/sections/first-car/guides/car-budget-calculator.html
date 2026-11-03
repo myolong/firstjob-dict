@@ -1,0 +1,43 @@
+---
+title: 연봉별 적정 차량 가격 계산기 - 사회초년생 첫차 얼마짜리가 맞을까
+description: 연봉, 모아 둔 돈, 다른 대출 상환액을 넣으면 월 실수령액 기준으로 무리 없는 첫차 가격 상한을 계산합니다. 연봉별 예시표도 함께 정리했습니다.
+short: 연봉별 적정 차량 가격
+calc: yes
+order: 3
+---
+<p>"연봉 3천이면 어떤 차까지 괜찮을까?"는 첫차를 고를 때 가장 많이 하는 고민입니다. 아래 계산기는 흔히 쓰이는 두 가지 어림 기준 중 더 보수적인 쪽을 보여 줍니다.</p>
+
+<form class="calc" id="calc-carbudget" onsubmit="return false">
+  <div class="fields">
+    <label>연봉 (세전)<input id="cb-salary" inputmode="numeric" data-money value="36,000,000"></label>
+    <label>차 사는 데 쓸 수 있는 모은 돈<input id="cb-cash" inputmode="numeric" data-money value="5,000,000"><span class="hint">비상금은 빼고</span></label>
+    <label>다른 대출 월 상환액<input id="cb-other" inputmode="numeric" data-money value="0"><span class="hint">학자금 대출 등</span></label>
+  </div>
+  <div class="result" id="cb-out" aria-live="polite"></div>
+</form>
+
+<h2>계산에 쓴 기준</h2>
+<ul>
+<li><strong>기준 ①</strong> 차량 가격은 연봉의 50% 이내</li>
+<li><strong>기준 ②</strong> 할부금·보험료·기름값·주차비 등 차에 드는 돈 전체가 월 실수령액의 15% 이내. 유지비는 월 25만원으로 가정하고, 남는 금액으로 48개월 할부를 한다고 보고 계산합니다.</li>
+</ul>
+
+<h2>연봉별 예시 (기준 ① 연봉의 50%)</h2>
+<table>
+<thead><tr><th>연봉</th><th>기준 ① 연봉의 50%</th><th>현실적인 차급 예시</th></tr></thead>
+<tbody>
+<tr><td>2,800만원</td><td>1,400만원</td><td>경차·소형 중고차</td></tr>
+<tr><td>3,600만원</td><td>1,800만원</td><td>경차 신차, 준중형 중고차</td></tr>
+<tr><td>4,500만원</td><td>2,250만원</td><td>준중형 신차</td></tr>
+<tr><td>6,000만원</td><td>3,000만원</td><td>중형·소형 SUV 신차</td></tr>
+</tbody>
+</table>
+<p>모아 둔 돈이 적으면 기준 ②가 더 낮게 나옵니다. 예를 들어 연봉 3,600만원에 모은 돈이 500만원이면 기준 ②로는 약 1,200만원이 상한이라, 신차보다 중고차나 경차가 현실적입니다. 차급 예시는 대략적인 가격대이며, 실제 가격은 트림과 옵션에 따라 크게 다릅니다.</p>
+
+<h2>첫차에서 흔한 실수</h2>
+<ul>
+<li>월 할부금만 보고 고르다가 보험료와 기름값에서 예산을 넘기는 경우</li>
+<li>60개월 이상 긴 할부로 비싼 차를 사서, 중간에 차를 바꾸고 싶어도 할부 잔액이 중고 시세보다 많은 경우</li>
+<li>비상금까지 선수금으로 넣어 사고나 수리 때 곤란해지는 경우</li>
+</ul>
+<p>월 실수령액은 <a href="/pay/take-home/">실수령액 계산기</a>에서, 할부금은 <a href="/first-car/car-loan-calculator/">자동차 할부 계산기</a>에서 확인할 수 있습니다.</p>
