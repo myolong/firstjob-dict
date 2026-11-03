@@ -439,4 +439,32 @@
     }
     bind(f, run);
   })();
+  /* ── 12. 월 보험료 적정선 ─────────────────────────────── */
+  (function () {
+    var f = $('calc-insbudget');
+    if (!f) return;
+    function run() {
+      var salary = num('ib-salary'), now = num('ib-now');
+      if (!salary) { $('ib-out').innerHTML = '<p class="note">연봉을 넣으면 계산됩니다.</p>'; return; }
+      var d = deductions(salary / 12, 200000, 1, 0);
+      var net = salary / 12 - d.total;
+      var lo = Math.floor(net * 0.05 / 1000) * 1000, hi = Math.floor(net * 0.10 / 1000) * 1000;
+      var list = [
+        ['월 예상 실수령액', won(net)],
+        ['적정선 하단 (실수령의 5%)', won(lo)],
+        ['적정선 상단 (실수령의 10%)', won(hi)]
+      ];
+      var msg = '';
+      if (now) {
+        var pct = now / net * 100;
+        list.push(['지금 내는 보험료', won(now) + ' (실수령의 ' + pct.toFixed(1) + '%)']);
+        msg = pct > 10 ? '실수령의 10%를 넘습니다. 저축성·중복 보장이 섞여 있지 않은지 점검해 보세요.'
+            : pct >= 5 ? '적정 범위 안입니다. 보장 내용이 겹치지 않는지만 확인하세요.'
+            : '적정선보다 낮습니다. 실손 등 기본 보장이 빠지지 않았는지 확인하세요.';
+      }
+      $('ib-out').innerHTML = '<p class="big">' + won(lo) + ' ~ ' + won(hi) + '<small>월 보험료 적정선</small></p>' + rows(list) +
+        '<p class="note">' + (msg ? msg + ' ' : '') + '부양가족이 없는 사회초년생은 낮은 쪽부터 시작해도 충분한 경우가 많습니다. 흔히 쓰이는 어림 기준이며 정답은 아닙니다.</p>';
+    }
+    bind(f, run);
+  })();
 })();
