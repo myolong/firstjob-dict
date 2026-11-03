@@ -277,4 +277,84 @@
     }
     bind(f, run);
   })();
+  /* ── 7. 자동차 할부 ────────────────────────────────────── */
+  function monthlyPay(principal, ratePct, months) {
+    var r = ratePct / 100 / 12;
+    if (months <= 0) return 0;
+    if (r === 0) return principal / months;
+    return principal * r * Math.pow(1 + r, months) / (Math.pow(1 + r, months) - 1);
+  }
+  (function () {
+    var f = $('calc-carloan');
+    if (!f) return;
+    function run() {
+      var price = num('cl-price'), down = num('cl-down'), rate = num('cl-rate'), months = Math.round(num('cl-months'));
+      var principal = Math.max(price - down, 0);
+      if (!price || !months) { $('cl-out').innerHTML = '<p class="note">차량 가격과 할부 기간을 넣으면 계산됩니다.</p>'; return; }
+      var m = monthlyPay(principal, rate, months);
+      var interest = m * months - principal;
+      $('cl-out').innerHTML = '<p class="big">' + won(m) + '<small>한 달 할부금 (원리금균등)</small></p>' + rows([
+        ['할부 원금 (차량 가격 − 선수금)', won(principal)],
+        ['총 이자', won(interest)],
+        ['총 납입액 (선수금 포함)', won(down + m * months)],
+        ['차량 가격 대비 이자 비율', (principal ? Math.round(interest / price * 1000) / 10 : 0) + '%']
+      ]) + '<p class="note">취득세·보험료·탁송료는 포함되지 않은 금액입니다.</p>';
+    }
+    bind(f, run);
+  })();
+
+  /* ── 8. 할부·리스·장기렌트 총비용 비교 ─────────────────── */
+  (function () {
+    var f = $('calc-carcompare');
+    if (!f) return;
+    function run() {
+      var price = num('cc-price'), months = Math.round(num('cc-months')) || 48, years = months / 12;
+      var rate = num('cc-rate'), down = num('cc-down'), ins = num('cc-ins');
+      var lease = num('cc-lease'), rent = num('cc-rent'), resid = num('cc-resid') / 100;
+      if (!price) { $('cc-out').innerHTML = '<p class="note">차량 가격을 넣으면 계산됩니다.</p>'; return; }
+      var tax = Math.round(price / 1.1 * 0.07);   // 비영업용 승용차 취득세 7% (부가세 제외 가격 기준, 추정)
+      var loanM = monthlyPay(Math.max(price - down, 0), rate, months);
+      var loanOut = down + loanM * months + tax + ins * years;
+      var value = price * resid;
+      var leaseOut = lease * months + ins * years;
+      var rentOut = rent * months;
+      function line(name, out, note) { return '<tr><td>' + name + '<span class="hint">' + note + '</span></td><td>' + won(out) + '</td></tr>'; }
+      var html = '<table class="rows"><tbody>' +
+        line('할부 (내 차)', loanOut, '선수금 + 할부금 + 취득세 + 보험료') +
+        line('할부 − 기간 끝 차량 가치', loanOut - value, '차를 팔면 돌려받는 돈(잔존가치 ' + Math.round(resid * 100) + '%)을 뺀 실제 비용') +
+        (lease ? line('리스 (반납 기준)', leaseOut, '월 리스료 + 보험료 (보험은 본인 가입)') : '') +
+        (rent ? line('장기렌트 (반납 기준)', rentOut, '월 대여료 (보험·세금 포함)') : '') +
+        '</tbody></table>';
+      html += '<p class="note">' + months + '개월 기준. 리스·렌트의 보증금·선납금, 정비 포함 여부, 약정 주행거리 초과 요금은 견적마다 달라 넣지 않았습니다. 실제 견적서 금액으로 바꿔 넣어 비교하세요.</p>';
+      $('cc-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
+
+  /* ── 9. 연봉별 적정 차량 가격 ─────────────────────────── */
+  (function () {
+    var f = $('calc-carbudget');
+    if (!f) return;
+    function run() {
+      var salary = num('cb-salary'), cash = num('cb-cash'), other = num('cb-other');
+      if (!salary) { $('cb-out').innerHTML = '<p class="note">연봉을 넣으면 계산됩니다.</p>'; return; }
+      var d = deductions(salary / 12, 200000, 1, 0);
+      var net = salary / 12 - d.total;
+      var carMonthly = net * 0.15 - other;         // 차에 쓰는 돈(할부+보험+기름값+주차) 월 실수령의 15% 이내
+      var running = 250000;                          // 보험·유류·주차 등 월 유지비 가정
+      var payCap = Math.max(carMonthly - running, 0);
+      var loanable = payCap * 48;                    // 금리 무시 48개월 단순 계산
+      var byRule = salary * 0.5;
+      var byCash = cash + loanable;
+      var pick = Math.min(byRule, byCash);
+      $('cb-out').innerHTML = '<p class="big">' + won(Math.floor(pick / 1e6) * 1e6) + '<small>이하 차량을 권장</small></p>' + rows([
+        ['월 예상 실수령액', won(net)],
+        ['차에 쓸 수 있는 돈 (실수령의 15% − 다른 대출 상환액)', won(Math.max(carMonthly, 0))],
+        ['그중 할부에 쓸 수 있는 돈 (유지비 월 25만원 가정)', won(payCap)],
+        ['기준 ① 연봉의 50%', won(byRule)],
+        ['기준 ② 모은 돈 + 48개월 할부 가능액', won(byCash)]
+      ]) + '<p class="note">두 기준 중 낮은 금액을 권장 상한으로 보여 줍니다. 개인 재무 관리에서 흔히 쓰이는 어림 기준이며, 정답은 아닙니다.</p>';
+    }
+    bind(f, run);
+  })();
 })();

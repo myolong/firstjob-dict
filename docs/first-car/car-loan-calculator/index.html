@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>자동차 할부 계산기 - 월 할부금, 총 이자 한 번에 계산 | 첫직장사전</title>
+<meta name="description" content="차량 가격, 선수금, 할부 금리, 기간을 넣으면 원리금균등 방식의 월 할부금과 총 이자, 총 납입액을 계산합니다. 할부 금리 비교 요령도 정리했습니다.">
+<link rel="canonical" href="https://firstjobdict.co.kr/first-car/car-loan-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="첫직장사전">
+<meta property="og:title" content="자동차 할부 계산기 - 월 할부금, 총 이자 한 번에 계산 | 첫직장사전">
+<meta property="og:description" content="차량 가격, 선수금, 할부 금리, 기간을 넣으면 원리금균등 방식의 월 할부금과 총 이자, 총 납입액을 계산합니다. 할부 금리 비교 요령도 정리했습니다.">
+<meta property="og:url" content="https://firstjobdict.co.kr/first-car/car-loan-calculator/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#f3f1ea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="alternate" type="application/rss+xml" title="첫직장사전" href="/rss.xml">
+<meta name="naver-site-verification" content="ea2d6bc14b047b78f80f6edeec20bbe615a30359">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5781805498180631" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "자동차 할부 계산기 - 월 할부금, 총 이자 한 번에 계산", "description": "차량 가격, 선수금, 할부 금리, 기간을 넣으면 원리금균등 방식의 월 할부금과 총 이자, 총 납입액을 계산합니다. 할부 금리 비교 요령도 정리했습니다.", "dateModified": "2026-11-03", "inLanguage": "ko", "mainEntityOfPage": "https://firstjobdict.co.kr/first-car/car-loan-calculator/", "author": {"@type": "Organization", "name": "첫직장사전"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://firstjobdict.co.kr/"}, {"@type": "ListItem", "position": 2, "name": "첫차 구매 가이드", "item": "https://firstjobdict.co.kr/first-car/"}, {"@type": "ListItem", "position": 3, "name": "자동차 할부 계산기 - 월 할부금, 총 이자 한 번에 계산", "item": "https://firstjobdict.co.kr/first-car/car-loan-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">첫직장사전</a>
+    <span class="tagline">사회초년생을 위한 월급·회사생활 사전</span>
+  </div>
+  <nav class="menu" aria-label="메뉴"><div class="wrap"><a href="/pay/">월급·계산기</a><a href="/youth/">청년 지원제도</a><a href="/first-home/">첫 자취</a><a href="/office/">회사 용어·예절</a><a href="/first-day/">첫 출근</a><a href="/first-salary/">첫 월급 관리</a><a href="/first-car/" aria-current="page">첫차</a></div></nav>
+</header>
+<main class="wrap">
+
+<nav class="crumbs" aria-label="위치"><a href="/">홈</a> › <a href="/first-car/">첫차 구매 가이드</a></nav>
+<article class="article">
+  <h1>자동차 할부 계산기 - 월 할부금, 총 이자 한 번에 계산</h1>
+  <p class="meta">최종 업데이트 2026-11-03</p>
+  <p>자동차 할부는 대부분 매달 같은 금액(원금 + 이자)을 내는 원리금균등 방식입니다. 차량 가격과 금리, 기간을 넣어 한 달에 얼마씩 내는지 확인해 보세요.</p>
+
+<form class="calc" id="calc-carloan" onsubmit="return false">
+  <div class="fields">
+    <label>차량 가격<input id="cl-price" inputmode="numeric" data-money value="25,000,000"><span class="hint">옵션·할인 반영한 최종 가격</span></label>
+    <label>선수금 (먼저 내는 돈)<input id="cl-down" inputmode="numeric" data-money value="5,000,000"></label>
+    <label>할부 금리 (연 %)<input id="cl-rate" inputmode="decimal" value="5.5"></label>
+    <label>할부 기간 (개월)<select id="cl-months"><option>12</option><option>24</option><option>36</option><option selected>48</option><option>60</option></select></label>
+  </div>
+  <div class="result" id="cl-out" aria-live="polite"></div>
+</form>
+
+<h2>할부 조건을 볼 때 확인할 것</h2>
+<ul>
+<li><strong>금리는 연 %로 비교합니다.</strong> 같은 차라도 제조사 프로모션, 캐피탈사, 카드사마다 금리가 다릅니다.</li>
+<li><strong>선수금이 많을수록 이자가 줄어듭니다.</strong> 다만 비상금까지 털어 넣으면 사고·수리 때 곤란해질 수 있습니다.</li>
+<li><strong>기간이 길수록 월 부담은 줄지만 총 이자는 늘어납니다.</strong> 위 계산기에서 36개월과 60개월을 바꿔 보면 차이가 바로 보입니다.</li>
+<li><strong>중도상환수수료</strong>가 있는지 확인하세요. 목돈이 생겨 빨리 갚을 때 수수료가 붙을 수 있습니다.</li>
+<li><strong>카드 할부</strong>는 금리는 낮아 보여도 카드 한도를 크게 차지합니다.</li>
+</ul>
+
+<h2>할부금 말고도 드는 돈</h2>
+<p>차를 사면 할부금 외에 취득세(차량 가격의 약 7%), 자동차보험료, 기름값, 주차비, 정기 점검비가 듭니다. 내 연봉으로 감당할 수 있는지는 <a href="/first-car/car-budget-calculator/">연봉별 적정 차량 가격 계산기</a>로, 리스·장기렌트와 비교하려면 <a href="/first-car/car-compare-calculator/">할부·리스·장기렌트 비교 계산기</a>로 확인하세요.</p>
+  <p class="disclaimer">첫차 정보는 일반적인 구매 방법과 비용 구조를 설명한 참고 자료이며, 특정 금융상품이나 차량을 추천하지 않습니다. 금리와 조건은 금융회사·판매사 견적과 공식 안내를 우선해 주세요.</p>
+</article>
+<script src="/assets/calc.js" defer></script>
+<aside class="related">
+  <h2>함께 보면 좋은 가이드</h2><ul class="cards">
+<li><a href="/first-car/car-compare-calculator/"><strong>할부·리스·장기렌트 총비용 비교 계산기 - 첫차 어떻게 살까</strong><span>같은 차를 할부, 리스, 장기렌트로 탈 때 계약 기간 동안 나가는 총비용을 한 화면에서 비교합니다. 견적서 금액을 넣어 직접 비교해 보세요.</span></a></li>
+<li><a href="/first-car/car-budget-calculator/"><strong>연봉별 적정 차량 가격 계산기 - 사회초년생 첫차 얼마짜리가 맞을까</strong><span>연봉, 모아 둔 돈, 다른 대출 상환액을 넣으면 월 실수령액 기준으로 무리 없는 첫차 가격 상한을 계산합니다. 연봉별 예시표도 함께 정리했습니다.</span></a></li>
+<li><a href="/first-car/lease-rent-loan/"><strong>리스·장기렌트·할부 차이 - 사회초년생 첫차 구매 방법 비교</strong><span>자동차 일시불, 할부, 리스, 장기렌트의 차이를 명의, 번호판, 보험, 세금, 계약 종료 후 처리 기준으로 비교하고 어떤 사람에게 맞는지 정리했습니다.</span></a></li>
+</ul>
+  <p><a class="btn" href="/first-car/">첫차 구매 가이드 전체 보기</a></p>
+</aside>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>이 사이트의 계산 결과와 정보는 일반적인 상황을 기준으로 한 참고용입니다. 실제 금액과 자격은 회사 급여명세서와 고용노동부·고용24·국민연금공단 등 공식 안내를 우선해 주세요.</p>
+    <p class="footer-links">
+      <a href="/about/">사이트 소개</a> ·
+      <a href="/privacy/">개인정보처리방침</a> ·
+      <a href="/contact/">문의</a>
+    </p>
+    <p>© 2026 첫직장사전</p>
+  </div>
+</footer>
+</body>
+</html>
