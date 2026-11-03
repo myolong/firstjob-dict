@@ -17,8 +17,8 @@ from datetime import date
 from pathlib import Path
 
 # ── 사이트 설정 (도메인·애드센스가 정해지면 여기만 바꾸고 다시 빌드) ──────────
-SITE_URL = "https://myolong.github.io/firstjob-dict"  # 임시 주소. 도메인을 사면 "https://도메인" 으로 바꾸고 CUSTOM_DOMAIN 도 입력
-CUSTOM_DOMAIN = ""  # 도메인 연결 후 입력 (예: "firstjobdict.com")
+SITE_URL = "https://firstjobdict.co.kr"
+CUSTOM_DOMAIN = "firstjobdict.co.kr"
 SITE_NAME = "첫직장사전"
 SITE_TAGLINE = "사회초년생을 위한 월급·회사생활 사전"
 CONTACT_EMAIL = ""  # 문의용 이메일 (본업과 분리된 주소)
