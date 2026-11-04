@@ -467,4 +467,31 @@
     }
     bind(f, run);
   })();
+  /* ── 13. 리볼빙 수수료 ─────────────────────────────────── */
+  (function () {
+    var f = $('calc-revolving');
+    if (!f) return;
+    function run() {
+      var bill = num('rv-bill'), pay = num('rv-pay'), rate = num('rv-rate') / 100, ratio = num('rv-ratio') / 100;
+      if (!bill) { $('rv-out').innerHTML = '<p class="note">카드값을 넣으면 계산됩니다.</p>'; return; }
+      var carry = Math.max(bill - pay, 0);
+      if (!carry) { $('rv-out').innerHTML = '<p class="big">0원<small>넘어가는 금액 없음</small></p><p class="note">카드값을 모두 내면 리볼빙 수수료가 없습니다.</p>'; return; }
+      if (ratio <= 0) ratio = 0.1;
+      var bal = carry, totalFee = 0, months = 0, first = carry * rate / 12;
+      while (bal > 0 && months < 600) {           // 매달: 잔액 × 결제비율 + 그달 수수료 납부
+        var fee = bal * rate / 12;
+        totalFee += fee;
+        bal -= Math.min(bal, Math.max(bal * ratio, 50000));   // 최소 결제 원금 5만원 가정
+        months++;
+      }
+      var y = Math.floor(months / 12), m = months % 12;
+      $('rv-out').innerHTML = '<p class="big">' + won(totalFee) + '<small>다 갚을 때까지 예상 수수료</small></p>' + rows([
+        ['다음 달로 넘어가는 금액', won(carry)],
+        ['다음 달 수수료 (한 달분)', won(first)],
+        ['다 갚기까지 걸리는 기간', (y ? y + '년 ' : '') + m + '개월'],
+        ['갚는 돈 합계 (원금 + 수수료)', won(carry + totalFee)]
+      ]) + '<p class="note">매달 남은 잔액의 ' + Math.round(ratio * 100) + '%(최소 5만원)와 그달 수수료를 내고, 새로 쓰는 돈은 없다고 가정한 추정입니다. 그사이 카드를 더 쓰면 기간과 수수료가 늘어납니다.</p>';
+    }
+    bind(f, run);
+  })();
 })();
