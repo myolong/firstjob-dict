@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>월 예산 짜기 계산기 - 월급 넣으면 저축·고정비·생활비 나눠 드림 | 첫직장컨닝</title>
+<meta name="description" content="한 달 실수령액과 고정비를 넣으면 저축 목표, 쓸 수 있는 생활비, 주간·하루 생활비, 비상금 모으는 기간까지 바로 계산해 줍니다. 50/30/20 기준과도 비교합니다.">
+<link rel="canonical" href="https://firstjobdict.co.kr/first-salary/budget-planner/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="첫직장컨닝">
+<meta property="og:title" content="월 예산 짜기 계산기 - 월급 넣으면 저축·고정비·생활비 나눠 드림 | 첫직장컨닝">
+<meta property="og:description" content="한 달 실수령액과 고정비를 넣으면 저축 목표, 쓸 수 있는 생활비, 주간·하루 생활비, 비상금 모으는 기간까지 바로 계산해 줍니다. 50/30/20 기준과도 비교합니다.">
+<meta property="og:url" content="https://firstjobdict.co.kr/first-salary/budget-planner/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#f3f1ea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="alternate" type="application/rss+xml" title="첫직장컨닝" href="/rss.xml">
+<meta name="naver-site-verification" content="ea2d6bc14b047b78f80f6edeec20bbe615a30359">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5781805498180631" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "월 예산 짜기 계산기 - 월급 넣으면 저축·고정비·생활비 나눠 드림", "description": "한 달 실수령액과 고정비를 넣으면 저축 목표, 쓸 수 있는 생활비, 주간·하루 생활비, 비상금 모으는 기간까지 바로 계산해 줍니다. 50/30/20 기준과도 비교합니다.", "dateModified": "2026-11-05", "inLanguage": "ko", "mainEntityOfPage": "https://firstjobdict.co.kr/first-salary/budget-planner/", "author": {"@type": "Organization", "name": "첫직장컨닝"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://firstjobdict.co.kr/"}, {"@type": "ListItem", "position": 2, "name": "첫 월급 관리", "item": "https://firstjobdict.co.kr/first-salary/"}, {"@type": "ListItem", "position": 3, "name": "월 예산 짜기 계산기 - 월급 넣으면 저축·고정비·생활비 나눠 드림", "item": "https://firstjobdict.co.kr/first-salary/budget-planner/"}]}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">첫직장컨닝</a>
+    <span class="tagline">사회초년생을 위한 월급·회사생활 컨닝페이퍼</span>
+  </div>
+  <nav class="menu" aria-label="메뉴"><div class="wrap"><a href="/pay/">월급·계산기</a><a href="/youth/">청년 지원제도</a><a href="/first-home/">첫 자취</a><a href="/office/">회사 용어·예절</a><a href="/first-day/">첫 출근</a><a href="/first-salary/" aria-current="page">첫 월급 관리</a><a href="/first-car/">첫차</a><a href="/insurance/">첫 보험·연금</a></div></nav>
+</header>
+<main class="wrap">
+
+<nav class="crumbs" aria-label="위치"><a href="/">홈</a> › <a href="/first-salary/">첫 월급 관리</a></nav>
+<article class="article">
+  <h1>월 예산 짜기 계산기 - 월급 넣으면 저축·고정비·생활비 나눠 드림</h1>
+  <p class="meta">최종 업데이트 2026-11-05</p>
+  <p>월급이 들어오면 얼마를 모으고 얼마를 써도 되는지부터 정해야 합니다. 실수령액과 매달 나가는 고정비만 넣으면 이번 달 예산을 나눠 드립니다. 입력한 금액은 이 화면에서만 계산되고 어디에도 저장되지 않습니다.</p>
+
+<form class="calc" id="calc-budget" onsubmit="return false">
+  <div class="fields">
+    <label>한 달 실수령액<input id="bg-net" inputmode="numeric" data-money value="2,400,000"><span class="hint">세금·4대보험을 뺀 통장에 들어오는 돈</span></label>
+    <label>저축 비율 (%)<input id="bg-rate" inputmode="numeric" value="20"><span class="hint">처음이면 20%부터, 본가에 살면 40~50%도 가능</span></label>
+    <label>월세·관리비<input id="bg-rent" inputmode="numeric" data-money value="550,000"></label>
+    <label>통신비<input id="bg-phone" inputmode="numeric" data-money value="60,000"></label>
+    <label>교통비<input id="bg-bus" inputmode="numeric" data-money value="70,000"></label>
+    <label>보험료<input id="bg-ins" inputmode="numeric" data-money value="50,000"></label>
+    <label>대출 상환<input id="bg-loan" inputmode="numeric" data-money value="0"><span class="hint">학자금 대출 등 매달 갚는 돈</span></label>
+    <label>구독·기타 고정비<input id="bg-etc" inputmode="numeric" data-money value="30,000"><span class="hint">OTT, 음원, 정기 후원 등</span></label>
+  </div>
+  <div class="result" id="bg-out" aria-live="polite"></div>
+</form>
+
+<h2>계산 순서: 먼저 떼고, 남은 돈으로 쓰기</h2>
+<p>이 계산기는 <b>저축을 먼저 떼고</b>, 고정비를 빼고, 남은 돈을 생활비로 보는 순서로 계산합니다. 쓰고 남은 돈을 모으려 하면 대부분 남는 돈이 없습니다.</p>
+<ol>
+<li><b>저축</b>: 실수령액 × 저축 비율. 급여일에 자동이체로 먼저 빠지게 해 두세요.</li>
+<li><b>고정비</b>: 매달 금액이 거의 같은 돈. 월세, 통신비, 보험료, 대출 상환, 구독료.</li>
+<li><b>생활비</b>: 나머지. 식비, 카페, 생필품, 모임, 쇼핑이 모두 여기서 나갑니다.</li>
+</ol>
+<p>생활비는 한 달 금액보다 <b>일주일 금액</b>으로 보는 게 지키기 쉽습니다. 계산 결과의 주간 생활비만큼 매주 생활비 통장에 옮기거나, 체크카드 한 장으로만 쓰면 잔액이 곧 남은 예산입니다. 통장 나누는 법은 <a href="/first-salary/account-split/">통장 나누기</a>에 정리해 두었습니다.</p>
+
+<h2>50/30/20 기준이란</h2>
+<p>실수령액의 50%를 꼭 필요한 지출(주거·통신·교통·식비 기본), 30%를 하고 싶은 지출(외식·여가·쇼핑), 20%를 저축에 쓰라는 어림 기준입니다. 정답이 아니라 내 예산이 한쪽으로 쏠리지 않았는지 보는 잣대로 쓰면 됩니다.</p>
+<table>
+<thead><tr><th>상황</th><th>저축 비율 예시</th><th>생각해 볼 점</th></tr></thead>
+<tbody>
+<tr><td>본가에서 출퇴근</td><td>40~60%</td><td>주거비가 없을 때 많이 모아 두기 좋은 시기</td></tr>
+<tr><td>자취 (월세)</td><td>15~25%</td><td>고정비가 실수령의 절반을 넘지 않게</td></tr>
+<tr><td>학자금 대출 상환 중</td><td>10~20%</td><td>상환액은 고정비에 넣고, 비상금부터 먼저</td></tr>
+</tbody>
+</table>
+
+<h2>비상금부터 채우기</h2>
+<p>저축을 시작하면 먼저 <b>생활비 3~6개월분</b>을 언제든 뺄 수 있는 곳에 모아 두세요. 갑자기 병원비나 이사비가 생겨도 적금을 깨거나 카드 할부·리볼빙에 기대지 않아도 됩니다. 계산 결과의 '비상금 목표'와 '모으는 데 걸리는 기간'을 참고하세요.</p>
+
+<h2>고정비가 너무 많다면</h2>
+<ul>
+<li>통신비: 쓰는 데이터양에 비해 요금제가 크지 않은지 확인</li>
+<li>구독료: 한 달에 한 번도 안 쓴 구독은 해지</li>
+<li>보험료: 실수령의 5~10%를 넘으면 겹치는 보장이 없는지 점검 (<a href="/insurance/">첫 보험·연금</a> 참고)</li>
+<li>월세: 재계약이나 이사 때 실수령의 25~30% 안쪽을 목표로</li>
+</ul>
+<p>실수령액을 모르면 <a href="/pay/take-home/">실수령액 계산기</a>에서 먼저 확인하세요.</p>
+  <p class="disclaimer">첫 월급 관리 정보는 일반적인 돈 관리 방법을 정리한 참고 자료이며, 특정 금융상품 가입을 권유하지 않습니다.</p>
+</article>
+<script src="/assets/calc.js" defer></script>
+<aside class="related">
+  <h2>함께 보면 좋은 가이드</h2><ul class="cards">
+<li><a href="/first-salary/account-split/"><strong>사회초년생 통장 나누기 - 첫 월급으로 만드는 4개의 통장</strong><span>첫 월급을 받으면 급여, 고정비, 생활비, 비상금·저축 통장으로 나누는 방법과 비율 예시, 자동이체 설정 순서를 정리했습니다.</span></a></li>
+<li><a href="/first-salary/payslip/"><strong>급여명세서 보는 법 - 지급 항목, 공제 항목, 비과세 한눈에</strong><span>첫 급여명세서의 지급 항목(기본급, 식대, 수당)과 공제 항목(4대보험, 소득세)을 읽는 법, 이상한 점을 확인하는 방법을 정리했습니다.</span></a></li>
+<li><a href="/first-salary/check-vs-credit-card/"><strong>체크카드 vs 신용카드 차이 - 사회초년생 첫 신용카드 언제, 어떻게 만들까</strong><span>체크카드와 신용카드의 차이(결제 방식, 한도, 신용점수 영향, 혜택)를 비교하고, 사회초년생이 첫 신용카드를 만들 때 정할 한도·결제일·연회비 기준과 피해야 할 습관을 정리했습니다.</span></a></li>
+</ul>
+  <p><a class="btn" href="/first-salary/">첫 월급 관리 전체 보기</a></p>
+</aside>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>이 사이트의 계산 결과와 정보는 일반적인 상황을 기준으로 한 참고용입니다. 실제 금액과 자격은 회사 급여명세서와 고용노동부·고용24·국민연금공단 등 공식 안내를 우선해 주세요.</p>
+    <p class="footer-links">
+      <a href="/about/">사이트 소개</a> ·
+      <a href="/privacy/">개인정보처리방침</a> ·
+      <a href="/contact/">문의</a>
+    </p>
+    <p>© 2026 첫직장컨닝</p>
+  </div>
+</footer>
+</body>
+</html>
