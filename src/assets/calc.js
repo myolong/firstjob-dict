@@ -1,4 +1,4 @@
-/* 첫직장사전 계산기 (2026년 기준).
+/* 첫직장컨닝 계산기 (2026년 기준).
    요율·기준이 바뀌면 아래 R 값만 고친다. */
 (function () {
   var R = {
@@ -491,6 +491,50 @@
         ['다 갚기까지 걸리는 기간', (y ? y + '년 ' : '') + m + '개월'],
         ['갚는 돈 합계 (원금 + 수수료)', won(carry + totalFee)]
       ]) + '<p class="note">매달 남은 잔액의 ' + Math.round(ratio * 100) + '%(최소 5만원)와 그달 수수료를 내고, 새로 쓰는 돈은 없다고 가정한 추정입니다. 그사이 카드를 더 쓰면 기간과 수수료가 늘어납니다.</p>';
+    }
+    bind(f, run);
+  })();
+  /* ── 14. 월 예산 짜기 ─────────────────────────────────── */
+  (function () {
+    var f = $('calc-budget');
+    if (!f) return;
+    function run() {
+      var net = num('bg-net');
+      if (!net) { $('bg-out').innerHTML = '<p class="note">실수령액을 넣으면 바로 계산됩니다.</p>'; return; }
+      var rate = Math.min(Math.max(num('bg-rate'), 0), 100) / 100;
+      var fixed = num('bg-rent') + num('bg-phone') + num('bg-bus') + num('bg-ins') + num('bg-loan') + num('bg-etc');
+      var save = floor10(net * rate);
+      var live = net - save - fixed;
+      var fixPct = fixed / net * 100;
+      var html;
+      if (live <= 0) {
+        html = '<p class="big">' + won(live) + '<small>생활비가 모자랍니다</small></p>' +
+          '<p class="warn">저축과 고정비만으로 실수령액을 넘습니다. 저축 비율을 낮추거나 고정비를 줄여 생활비가 남게 조정해 보세요.</p>';
+      } else {
+        html = '<p class="big">' + won(live / 4.345) + '<small>일주일 생활비</small></p>' +
+          '<p class="note">하루 약 ' + won(live / 30.4) + ' · 한 달 생활비 ' + won(live) + '</p>';
+      }
+      var need = 6;
+      var emerg = (fixed + Math.max(live, 0)) * 3;
+      var emergLine = save > 0 ? Math.ceil(emerg / save) + '개월 (매달 저축액 기준)' : '저축액이 없으면 모을 수 없음';
+      html += rows([
+        ['실수령액', won(net)],
+        ['① 저축 (먼저 떼기, ' + Math.round(rate * 100) + '%)', won(save)],
+        ['② 고정비 합계 (실수령의 ' + fixPct.toFixed(1) + '%)', won(fixed)],
+        ['③ 생활비 (나머지)', won(live)],
+        ['비상금 목표 (월 지출 3개월분)', won(emerg)],
+        ['비상금 모으는 데 걸리는 기간', emergLine],
+        ['1년 저축 합계', won(save * 12)]
+      ]);
+      var n = Math.round(net * 0.5), w = Math.round(net * 0.3), s20 = Math.round(net * 0.2);
+      html += '<p class="note" style="margin-top:14px"><b>50/30/20 기준과 비교</b></p>' + rows([
+        ['필요 지출 50%', won(n) + (fixed > n ? ' <span class="warn">고정비가 넘음</span>' : '')],
+        ['하고 싶은 지출 30%', won(w)],
+        ['저축 20%', won(s20) + (save < s20 ? ' (내 저축 ' + won(save) + ')' : ' ✓')]
+      ]);
+      if (fixPct > 50) html += '<p class="warn">고정비가 실수령액의 절반을 넘습니다. 월세·통신비·보험료·구독료부터 점검해 보세요.</p>';
+      html += '<p class="note">한 달은 평균 4.345주, 30.4일로 나눴습니다. 비상금은 고정비와 생활비를 합친 한 달 지출의 3개월분으로 잡았고, 여유가 되면 ' + need + '개월분까지 늘려 두면 좋습니다.</p>';
+      $('bg-out').innerHTML = html;
     }
     bind(f, run);
   })();

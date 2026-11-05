@@ -19,9 +19,9 @@ from pathlib import Path
 # ── 사이트 설정 (도메인·애드센스가 정해지면 여기만 바꾸고 다시 빌드) ──────────
 SITE_URL = "https://firstjobdict.co.kr"
 CUSTOM_DOMAIN = "firstjobdict.co.kr"
-SITE_NAME = "첫직장사전"
-SITE_TAGLINE = "사회초년생을 위한 월급·회사생활 사전"
-CONTACT_EMAIL = "salimdict.help@gmail.com"  # 문의용 이메일 (살림사전과 공용, 본업과 분리된 주소)
+SITE_NAME = "첫직장컨닝"
+SITE_TAGLINE = "사회초년생을 위한 월급·회사생활 컨닝페이퍼"
+CONTACT_EMAIL = "salimdict.help@gmail.com"  # 문의용 이메일 (살림컨닝과 공용, 본업과 분리된 주소)
 ADSENSE_CLIENT = "ca-pub-5781805498180631"  # 예: "ca-pub-1234567890123456" → 광고 스크립트·ads.txt 생성
 GOOGLE_VERIFICATION = ""  # 구글 서치 콘솔 HTML 태그의 content 값
 NAVER_VERIFICATION = "ea2d6bc14b047b78f80f6edeec20bbe615a30359"  # 네이버 서치어드바이저 HTML 태그의 content 값
@@ -62,6 +62,7 @@ def read_guides(folder, section_id):
             "order": int(meta.get("order", 99)),
             "calc": meta.get("calc") == "yes",
             "short": meta.get("short", ""),
+            "home": meta.get("home") == "yes",
             "body": body.strip().replace('href="/', f'href="{BASE_PATH}/').replace('src="/', f'src="{BASE_PATH}/'),
         })
     return sorted(guides, key=lambda g: g["order"])
@@ -121,7 +122,7 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <meta name="theme-color" content="#f3f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap">
 <link rel="icon" href="{url('/favicon.ico')}" sizes="48x48">
 <link rel="icon" href="{url('/assets/favicon.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{url('/assets/apple-touch-icon.png')}">
@@ -241,14 +242,16 @@ def build_home(sections):
         for g, items in groups.items()
     )
     # 메뉴마다 돌아가며 하나씩 골라 홈 가이드 목록이 한 메뉴에 쏠리지 않게 한다.
-    picked, depth = [], 0
+    # front matter에 home: yes 인 가이드는 홈 목록 맨 위에 고정한다.
+    picked = [g for s in sections for g in s["guides"] if g.get("home")]
+    depth = 0
     while len(picked) < 12 and any(len(s["guides"]) > depth for s in sections):
-        picked += [s["guides"][depth] for s in sections if len(s["guides"]) > depth]
+        picked += [s["guides"][depth] for s in sections if len(s["guides"]) > depth and not s["guides"][depth].get("home")]
         depth += 1
     all_guides = picked[:12]
     body = f"""
 <section class="home-search">
-  <h1>첫 직장, 막힐 때 찾아보는 사전</h1>
+  <h1>첫 직장, 막힐 때 꺼내 보는 컨닝페이퍼</h1>
   <label class="gsearch">
     <span class="sr-only">전체 메뉴에서 찾기</span>
     <input id="gq" type="search" placeholder="계산기, 회사 용어, 지원제도 이름으로 찾기" autocomplete="off" data-index="{url('/search.json')}">
@@ -378,9 +381,9 @@ def build_static_pages(sections):
     )
     menu_list = "".join(f"<li>{esc(s['title'])}</li>" for s in sections)
     pages = {
-        "/about/": ("사이트 소개", f"{SITE_NAME}는 첫 직장을 시작한 사회초년생이 자주 찾는 월급 계산, 회사 용어, 청년 지원제도, 첫 자취 정보를 정리한 생활 정보 사이트입니다.", f"""
+        "/about/": ("사이트 소개", f"{SITE_NAME}은 첫 직장을 시작한 사회초년생이 자주 찾는 월급 계산, 회사 용어, 청년 지원제도, 첫 자취 정보를 정리한 생활 정보 사이트입니다.", f"""
 <h1>사이트 소개</h1>
-<p>첫 월급을 받으면 "왜 생각보다 적지?", 첫 회의에 들어가면 "팔로우업이 정확히 뭐지?" 같은 질문이 생깁니다. {esc(SITE_NAME)}는 사회초년생이 매번 따로 검색하던 정보를 계산기, 검색표, 가이드로 한곳에 모은 사이트입니다.</p>
+<p>첫 월급을 받으면 "왜 생각보다 적지?", 첫 회의에 들어가면 "팔로우업이 정확히 뭐지?" 같은 질문이 생깁니다. {esc(SITE_NAME)}은 사회초년생이 매번 따로 검색하던 정보를 계산기, 검색표, 가이드로 한곳에 모은 사이트입니다.</p>
 <h2>제공하는 메뉴</h2>
 <ul>{menu_list}</ul>
 <p>메뉴와 글은 계속 늘려 가고 있습니다.</p>
