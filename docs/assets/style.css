@@ -163,3 +163,55 @@ tr:last-child td{border-bottom:0}
 .cal-legend .k-hol{color:#c0392b;font-weight:600}
 .cal-legend .k-leave{background:var(--persim);color:#fff;border-radius:4px;padding:0 6px}
 @media (prefers-color-scheme:dark){.yearcal .sun,.yearcal .hol,.cal-legend .k-hol{color:#ff8a7a}}
+
+:root{--pen:#2d5bc4}
+
+/* ── 컨닝 시리즈 공통 디자인: 컨닝페이퍼 쪽지 (모눈 노트·포스트잇·손글씨 제목) ── */
+:root,:root:not([data-theme]){--bg:#fbfaf5;--card:#fff;--ink:#2b2a27;--muted:#6b675d;--line:#e3ddcc;--panel:#fff3a8;--on-panel:#2b2a27;--hand:"Nanum Pen Script",cursive;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#fbfaf5;--card:#fff;--ink:#2b2a27;--muted:#6b675d;--line:#e3ddcc;--accent:var(--pen);--accent-soft:#fff3c4;--persim:var(--pen);--panel:#fff3a8;--on-panel:#2b2a27;color-scheme:light}}
+:root{--accent:var(--pen);--persim:var(--pen);--accent-soft:#fff3c4}
+body{background-color:var(--bg);background-image:linear-gradient(#efeadb 1px,transparent 1px),linear-gradient(90deg,#efeadb 1px,transparent 1px);background-size:24px 24px}
+.site-header{background:#fffdf6;border-bottom:2px solid var(--ink)}
+.logo{font-family:var(--hand);font-size:38px;font-weight:400;line-height:1.1}
+.logo::after{content:"✎";font-size:22px;color:var(--pen);margin-left:4px}
+.tagline{font-family:var(--hand);font-size:21px;color:var(--pen)}
+.menu{border-bottom:0}
+.site-header .menu .wrap{gap:8px;padding-block:8px 10px}
+.menu a,.site-header .menu a{background:#fff;border:1.5px solid var(--ink);border-radius:6px;padding:4px 12px;color:var(--ink);font-size:14px}
+.menu a:hover,.menu a[aria-current]{background:var(--ink);color:#fff;border-bottom-color:var(--ink)}
+.home-search{background:#fff3a8;padding:30px 28px 26px;border-radius:2px;box-shadow:4px 6px 0 rgba(0,0,0,.08);transform:rotate(-.5deg);margin-top:10px}
+.home-search::before{content:"";position:absolute;left:50%;top:-12px;width:120px;height:26px;margin-left:-60px;background:color-mix(in srgb,var(--pen) 40%,transparent);transform:rotate(2deg)}
+.home-search h1{font-family:var(--hand);font-size:clamp(2.1rem,6vw,3rem);font-weight:400;line-height:1.15}
+.gsearch input,.search input{border:2px solid var(--ink);border-radius:8px;background:#fff}
+h2,.menu-list h2{font-family:var(--hand);font-weight:400}
+.menu-list h2,.calc-home h2{font-size:32px;color:var(--ink);display:inline-block;background:linear-gradient(transparent 58%,#ffe66d 58%);margin-top:30px}
+.menu-list ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:8px}
+.menu-list li{border:1.5px solid var(--ink);border-radius:4px;box-shadow:3px 3px 0 var(--ink);background:#fff;padding:0 14px;align-items:center}
+.menu-list li:nth-child(3n+1){background:#fffbe6}.menu-list li:nth-child(3n+2){background:#f1f8ff}.menu-list li:nth-child(3n){background:#fff1f0}
+.menu-list li:hover{box-shadow:5px 5px 0 var(--pen);transform:translate(-1px,-1px)}
+.menu-list a strong{font-family:var(--sans);font-weight:700}
+.menu-list em{background:#fff;border:1px solid var(--ink);border-radius:999px;padding:0 8px;color:var(--ink)}
+.guides-list ul{grid-template-columns:1fr}
+.guides-list li{box-shadow:none;border-style:dashed;background:#fff !important}
+.month-card,.todo-card{border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:4px}
+.month-card{background:#fff}
+.todo-card{background:#fff3a8;color:var(--ink)}
+.todo-card a{color:var(--ink);text-decoration-color:rgba(0,0,0,.25)}
+.month-num{color:var(--pen)}
+.calc-home a,.calc,.cards a{background:#fff}
+.calc{border:1.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:6px}
+main.wrap>h1,.article h1{font-family:var(--hand);font-weight:400;font-size:clamp(2.1rem,5.5vw,2.8rem);line-height:1.15}
+.article h2{font-size:30px;display:inline-block;background:linear-gradient(transparent 58%,#ffe66d 58%)}
+.table-wrap{background:#fff;border:1.5px solid var(--ink);border-radius:6px;box-shadow:3px 3px 0 var(--ink)}
+.chip{border:1.5px solid var(--ink);background:#fff}
+.chip.is-on{background:var(--ink);color:#fff}
+.btn{background:var(--pen);color:#fff;border:1.5px solid var(--ink)}
+.site-footer{background:#fffdf6;border-top:2px solid var(--ink)}
+
+main h1{font-family:var(--hand);font-weight:400;font-size:clamp(2.1rem,5.5vw,2.8rem);line-height:1.15}
+.month-grid h2,.todo-card h2,.month-card h2{font-size:27px;color:var(--ink)}
+.calc-home a{border:1.5px solid var(--ink);border-radius:4px;box-shadow:3px 3px 0 var(--ink);background:#fff}
+.calc-home li:nth-child(3n+1) a{background:#fffbe6}.calc-home li:nth-child(3n+2) a{background:#f1f8ff}.calc-home li:nth-child(3n) a{background:#fff1f0}
+.calc-home a:hover{box-shadow:5px 5px 0 var(--pen);transform:translate(-1px,-1px)}
+.calc-home h2 small{font-family:var(--sans)}
+@media print{body{background:#fff !important;background-image:none !important}}

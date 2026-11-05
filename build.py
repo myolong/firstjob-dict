@@ -121,7 +121,7 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <meta name="theme-color" content="#f3f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap">
 <link rel="icon" href="{url('/assets/favicon.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{url('/assets/style.css')}">
 <link rel="alternate" type="application/rss+xml" title="{esc(SITE_NAME)}" href="{url('/rss.xml')}">
