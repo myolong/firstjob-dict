@@ -43,6 +43,24 @@ def esc(text):
     return html.escape(str(text), quote=True)
 
 
+
+# 컨닝 시리즈 (푸터 한 줄)
+SERIES = [
+    ("살림컨닝", "https://salimdict.com"),
+    ("첫직장컨닝", "https://firstjobdict.co.kr"),
+    ("양식컨닝", "https://formcunning.co.kr"),
+]
+
+
+def series_line():
+    parts = []
+    for name, href in SERIES:
+        if name == SITE_NAME:
+            parts.append(f'<strong class="current" aria-current="page">{esc(name)}</strong>')
+        else:
+            parts.append(f'<a href="{href}/">{esc(name)}</a>')
+    return '<p class="series-links">컨닝 시리즈: ' + " · ".join(parts) + "</p>"
+
 def read_guides(folder, section_id):
     guides = []
     for f in sorted(folder.glob("*.html")):
@@ -149,6 +167,7 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
       <a href="{url('/privacy/')}">개인정보처리방침</a> ·
       <a href="{url('/contact/')}">문의</a>
     </p>
+    {series_line()}
     <p>© {date.today().year} {esc(SITE_NAME)}</p>
   </div>
 </footer>

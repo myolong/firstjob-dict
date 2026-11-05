@@ -115,6 +115,8 @@ tr:last-child td{border-bottom:0}
 
 .site-footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:20px 0 32px}
 .site-footer a{color:var(--muted)}
+.site-footer .series-links{font-size:13px}
+.site-footer .series-links .current{color:var(--ink);font-weight:700}
 
 @media (max-width:720px){
   .month-grid{grid-template-columns:1fr}
