@@ -165,7 +165,7 @@ tr:last-child td{border-bottom:0}
 .cal-legend .k-leave{background:var(--persim);color:#fff;border-radius:4px;padding:0 6px}
 @media (prefers-color-scheme:dark){.yearcal .sun,.yearcal .hol,.cal-legend .k-hol{color:#ff8a7a}}
 
-:root{--pen:#2d5bc4}
+:root{--pen:#7a44c2}
 
 /* ── 컨닝 시리즈 공통 디자인: 컨닝페이퍼 쪽지 (모눈 노트·포스트잇·손글씨 제목) ── */
 :root,:root:not([data-theme]){--bg:#fbfaf5;--card:#fff;--ink:#2b2a27;--muted:#6b675d;--line:#e3ddcc;--panel:#fff3a8;--on-panel:#2b2a27;--hand:"Nanum Pen Script",cursive;color-scheme:light}
