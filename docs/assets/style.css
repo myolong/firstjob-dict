@@ -1,4 +1,4 @@
-/* 첫직장사전: 종이 바탕 + 남색 잉크 + 겨자색 포인트 */
+/* 첫직장컨닝: 종이 바탕 + 남색 잉크 + 겨자색 포인트 */
 :root{--bg:#f3f1ea;--card:#fdfcf8;--ink:#1f2a44;--muted:#5a6275;--line:#d9d5c8;--accent:#2d4a8a;--accent-soft:#e4e8f1;--persim:#b7791f;--panel:#1f2a44;--on-panel:#f3f1ea;--radius:6px;
   --serif:"Gowun Batang","Nanum Myeongjo",serif;--sans:"Gowun Dodum",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 @media (prefers-color-scheme:dark){:root{--bg:#141823;--card:#1c2130;--ink:#e7e9f0;--muted:#a3a9b8;--line:#323a4e;--accent:#9db4ec;--accent-soft:#232b3f;--persim:#e3a94a;--panel:#26304a;--on-panel:#f3f1ea;color-scheme:dark}}
