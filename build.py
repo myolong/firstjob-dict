@@ -62,6 +62,7 @@ def read_guides(folder, section_id):
             "order": int(meta.get("order", 99)),
             "calc": meta.get("calc") == "yes",
             "short": meta.get("short", ""),
+            "home": meta.get("home") == "yes",
             "body": body.strip().replace('href="/', f'href="{BASE_PATH}/').replace('src="/', f'src="{BASE_PATH}/'),
         })
     return sorted(guides, key=lambda g: g["order"])
@@ -122,7 +123,9 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap">
+<link rel="icon" href="{url('/favicon.ico')}" sizes="48x48">
 <link rel="icon" href="{url('/assets/favicon.svg')}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{url('/assets/apple-touch-icon.png')}">
 <link rel="stylesheet" href="{url('/assets/style.css')}">
 <link rel="alternate" type="application/rss+xml" title="{esc(SITE_NAME)}" href="{url('/rss.xml')}">
 {chr(10).join(head_extra)}
@@ -130,7 +133,7 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="{url('/')}">{esc(SITE_NAME)}</a>
+    <a class="logo" href="{url('/')}"><img src="{url('/assets/favicon.svg')}" alt="" width="30" height="30">{esc(SITE_NAME)}</a>
     <span class="tagline">{esc(SITE_TAGLINE)}</span>
   </div>
   <nav class="menu" aria-label="메뉴"><div class="wrap">{nav}</div></nav>
@@ -239,9 +242,11 @@ def build_home(sections):
         for g, items in groups.items()
     )
     # 메뉴마다 돌아가며 하나씩 골라 홈 가이드 목록이 한 메뉴에 쏠리지 않게 한다.
-    picked, depth = [], 0
+    # front matter에 home: yes 인 가이드는 홈 목록 맨 위에 고정한다.
+    picked = [g for s in sections for g in s["guides"] if g.get("home")]
+    depth = 0
     while len(picked) < 12 and any(len(s["guides"]) > depth for s in sections):
-        picked += [s["guides"][depth] for s in sections if len(s["guides"]) > depth]
+        picked += [s["guides"][depth] for s in sections if len(s["guides"]) > depth and not s["guides"][depth].get("home")]
         depth += 1
     all_guides = picked[:12]
     body = f"""
@@ -454,6 +459,7 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     shutil.copytree(SRC / "assets", OUT / "assets")
+    shutil.copy(SRC / "assets" / "favicon.ico", OUT / "favicon.ico")  # 검색엔진이 찾는 기본 위치
     # 검색엔진 인증 파일처럼 사이트 루트에 그대로 둘 파일
     for f in (SRC / "root").glob("*"):
         shutil.copy(f, OUT / f.name)
