@@ -147,3 +147,19 @@ tr:last-child td{border-bottom:0}
 .calc .seg button{font:inherit;font-size:14px;padding:5px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 .calc .seg button.is-on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .term-ex{color:var(--muted);font-size:14px}
+/* 연간 달력 */
+.yearcal{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:18px 0}
+.yearcal .mon{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:10px}
+.yearcal h3{margin:0 0 6px;font:600 15px/1.4 var(--serif)}
+.article .yearcal table,.yearcal table{display:table;width:100%;border-collapse:collapse;table-layout:fixed;margin:0;font-size:13px;background:none}
+.yearcal th,.yearcal td{text-align:center;padding:3px 0;border:0}
+.yearcal th{color:var(--muted);font-weight:400}
+.yearcal .sat{color:var(--accent)}
+.yearcal .sun,.yearcal .hol{color:#c0392b;font-weight:600}
+.yearcal td.leave{color:#fff;background:var(--persim);color:#fff;border-radius:4px;font-weight:600}
+.yearcal .hol.sub{text-decoration:underline}
+.cal-legend{font-size:14px;color:var(--muted)}
+.cal-legend span{display:inline-block;margin-right:12px}
+.cal-legend .k-hol{color:#c0392b;font-weight:600}
+.cal-legend .k-leave{background:var(--persim);color:#fff;border-radius:4px;padding:0 6px}
+@media (prefers-color-scheme:dark){.yearcal .sun,.yearcal .hol,.cal-legend .k-hol{color:#ff8a7a}}
