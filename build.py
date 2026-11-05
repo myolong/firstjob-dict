@@ -122,7 +122,9 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap">
+<link rel="icon" href="{url('/favicon.ico')}" sizes="48x48">
 <link rel="icon" href="{url('/assets/favicon.svg')}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{url('/assets/apple-touch-icon.png')}">
 <link rel="stylesheet" href="{url('/assets/style.css')}">
 <link rel="alternate" type="application/rss+xml" title="{esc(SITE_NAME)}" href="{url('/rss.xml')}">
 {chr(10).join(head_extra)}
@@ -130,7 +132,7 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="{url('/')}">{esc(SITE_NAME)}</a>
+    <a class="logo" href="{url('/')}"><img src="{url('/assets/favicon.svg')}" alt="" width="30" height="30">{esc(SITE_NAME)}</a>
     <span class="tagline">{esc(SITE_TAGLINE)}</span>
   </div>
   <nav class="menu" aria-label="메뉴"><div class="wrap">{nav}</div></nav>
@@ -454,6 +456,7 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     shutil.copytree(SRC / "assets", OUT / "assets")
+    shutil.copy(SRC / "assets" / "favicon.ico", OUT / "favicon.ico")  # 검색엔진이 찾는 기본 위치
     # 검색엔진 인증 파일처럼 사이트 루트에 그대로 둘 파일
     for f in (SRC / "root").glob("*"):
         shutil.copy(f, OUT / f.name)
