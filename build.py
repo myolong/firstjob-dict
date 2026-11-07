@@ -117,7 +117,7 @@ def faq_ld(body):
     return {"@type": "FAQPage", "mainEntity": qa} if qa else None
 
 
-# ── 참고한 공식 자료 ─────────────────────────────────────────────────────
+# ── 관련 공식 자료 (출처 링크) ─────────────────────────────────────────────────────
 def sources_html(sources):
     """sources: [(이름, 주소), ...] → 출처 목록 HTML."""
     if not sources:
@@ -125,7 +125,7 @@ def sources_html(sources):
     lis = "".join(
         f'<li><a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a></li>' for n, u in sources
     )
-    return f'<section class="sources"><h2>참고한 공식 자료</h2><ul>{lis}</ul></section>'
+    return f'<section class="sources"><h2>관련 공식 자료</h2><ul>{lis}</ul></section>'
 
 
 def parse_sources(value):
@@ -232,7 +232,11 @@ def layout(*, title, description, path, body, sections, json_ld=None, page_title
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{esc(canonical)}">
 <meta property="og:locale" content="ko_KR">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{SITE_URL}/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{esc(SITE_NAME)} - {esc(SITE_TAGLINE)}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f3f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

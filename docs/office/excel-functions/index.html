@@ -12,7 +12,11 @@
 <meta property="og:description" content="회사에서 가장 많이 쓰는 엑셀 함수 10개(SUM, AVERAGE, COUNTIF, SUMIF·SUMIFS, IF, IFERROR, VLOOKUP, XLOOKUP, ROUND, TEXT)를 같은 예제 표로 정리하고, 절대참조($)와 자주 나는 오류 해결법까지 담았습니다.">
 <meta property="og:url" content="https://firstjobdict.co.kr/office/excel-functions/">
 <meta property="og:locale" content="ko_KR">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://firstjobdict.co.kr/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="첫직장컨닝 - 사회초년생을 위한 월급·회사생활 컨닝페이퍼">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f3f1ea">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +28,7 @@
 <link rel="alternate" type="application/rss+xml" title="첫직장컨닝" href="/rss.xml">
 <meta name="naver-site-verification" content="ea2d6bc14b047b78f80f6edeec20bbe615a30359">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5781805498180631" crossorigin="anonymous"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "신입사원 엑셀 함수 10개 - SUM, VLOOKUP, IF, SUMIF 예제로 바로 쓰기", "description": "회사에서 가장 많이 쓰는 엑셀 함수 10개(SUM, AVERAGE, COUNTIF, SUMIF·SUMIFS, IF, IFERROR, VLOOKUP, XLOOKUP, ROUND, TEXT)를 같은 예제 표로 정리하고, 절대참조($)와 자주 나는 오류 해결법까지 담았습니다.", "datePublished": "2026-11-07", "dateModified": "2026-11-07", "inLanguage": "ko", "mainEntityOfPage": "https://firstjobdict.co.kr/office/excel-functions/", "author": {"@type": "Organization", "name": "첫직장컨닝", "url": "https://firstjobdict.co.kr/"}, "publisher": {"@type": "Organization", "name": "첫직장컨닝", "url": "https://firstjobdict.co.kr/"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://firstjobdict.co.kr/"}, {"@type": "ListItem", "position": 2, "name": "회사 용어 사전과 회사생활 기본기", "item": "https://firstjobdict.co.kr/office/"}, {"@type": "ListItem", "position": 3, "name": "신입사원 엑셀 함수 10개 - SUM, VLOOKUP, IF, SUMIF 예제로 바로 쓰기", "item": "https://firstjobdict.co.kr/office/excel-functions/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "신입사원 엑셀 함수 10개 - SUM, VLOOKUP, IF, SUMIF 예제로 바로 쓰기", "description": "회사에서 가장 많이 쓰는 엑셀 함수 10개(SUM, AVERAGE, COUNTIF, SUMIF·SUMIFS, IF, IFERROR, VLOOKUP, XLOOKUP, ROUND, TEXT)를 같은 예제 표로 정리하고, 절대참조($)와 자주 나는 오류 해결법까지 담았습니다.", "datePublished": "2026-11-07", "dateModified": "2026-11-07", "inLanguage": "ko", "mainEntityOfPage": "https://firstjobdict.co.kr/office/excel-functions/", "author": {"@type": "Organization", "name": "첫직장컨닝", "url": "https://firstjobdict.co.kr/"}, "publisher": {"@type": "Organization", "name": "첫직장컨닝", "url": "https://firstjobdict.co.kr/"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://firstjobdict.co.kr/"}, {"@type": "ListItem", "position": 2, "name": "회사 용어 사전과 회사생활 기본기", "item": "https://firstjobdict.co.kr/office/"}, {"@type": "ListItem", "position": 3, "name": "신입사원 엑셀 함수 10개 - SUM, VLOOKUP, IF, SUMIF 예제로 바로 쓰기", "item": "https://firstjobdict.co.kr/office/excel-functions/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "조건에 맞는 값만 더하려면 어떤 함수를 쓰나요?", "acceptedAnswer": {"@type": "Answer", "text": "SUMIF를 씁니다. 예를 들어 =SUMIF(B2:B6,\"영업\",C2:C6)은 부서가 영업인 사람의 매출만 더합니다."}}, {"@type": "Question", "name": "VLOOKUP과 XLOOKUP은 무엇이 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "둘 다 다른 표에서 값을 찾아오는 함수이고, XLOOKUP은 찾을 범위와 가져올 범위를 따로 지정하는 새 버전입니다. 엑셀 버전에 따라 XLOOKUP이 없을 수 있습니다. 예시는 마이크로소프트 엑셀 기준입니다. 구글 스프레드시트도 함수 이름과 사용법이 거의 같습니다. XLOOKUP·IFS는 엑셀 버전에 따라 없을 수 있습니다."}}]}]}</script>
 </head>
 <body>
 <header class="site-header">
@@ -132,6 +136,12 @@
 <li><strong>Ctrl + ;</strong>: 오늘 날짜 넣기</li>
 </ul>
 <p>회사 파일은 다른 사람이 이어서 쓰는 경우가 많습니다. 숫자를 직접 고쳐 쓰기보다 수식으로 남겨 두면 나중에 확인하기 쉽습니다. 엑셀 강의를 듣고 싶다면 <a href="/youth/tomorrow-learning-card/">국민내일배움카드</a>로 수강료를 지원받을 수 있습니다.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>조건에 맞는 값만 더하려면 어떤 함수를 쓰나요?</h3>
+<p>SUMIF를 씁니다. 예를 들어 =SUMIF(B2:B6,"영업",C2:C6)은 부서가 영업인 사람의 매출만 더합니다.</p>
+<h3>VLOOKUP과 XLOOKUP은 무엇이 다른가요?</h3>
+<p>둘 다 다른 표에서 값을 찾아오는 함수이고, XLOOKUP은 찾을 범위와 가져올 범위를 따로 지정하는 새 버전입니다. 엑셀 버전에 따라 XLOOKUP이 없을 수 있습니다.</p>
 
 <p class="note">예시는 마이크로소프트 엑셀 기준입니다. 구글 스프레드시트도 함수 이름과 사용법이 거의 같습니다. XLOOKUP·IFS는 엑셀 버전에 따라 없을 수 있습니다.</p>
   
