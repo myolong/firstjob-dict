@@ -26,6 +26,7 @@ ADSENSE_CLIENT = "ca-pub-5781805498180631"  # 예: "ca-pub-1234567890123456" →
 GOOGLE_VERIFICATION = ""  # 구글 서치 콘솔 HTML 태그의 content 값
 NAVER_VERIFICATION = "ea2d6bc14b047b78f80f6edeec20bbe615a30359"  # 네이버 서치어드바이저 HTML 태그의 content 값
 UPDATED = date.today().isoformat()
+PRIVACY_FROM = "2026-11-03"  # 개인정보처리방침 시행일 (방침을 바꿀 때만 고침)
 # ───────────────────────────────────────────────────────────────────────
 
 ROOT = Path(__file__).parent
@@ -42,6 +43,99 @@ def url(path):
 def esc(text):
     return html.escape(str(text), quote=True)
 
+
+
+LASTMOD = {}  # 경로 → 수정일 (사이트맵 lastmod)
+
+
+def date_line(pub, mod):
+    if pub == mod:
+        return f'<p class="meta">작성 <time datetime="{pub}">{pub}</time></p>'
+    return f'<p class="meta">작성 <time datetime="{pub}">{pub}</time> · 최종 수정 <time datetime="{mod}">{mod}</time></p>'
+
+
+# ── 글별 날짜 (src/dates.json) ─────────────────────────────────────────
+# 원본 파일 내용이 바뀐 날만 '수정일'이 바뀐다. 빌드할 때마다 모든 글이 오늘 날짜가 되지 않게 하려는 것.
+# 처음 보는 파일은 git 기록(처음 커밋한 날 / 마지막 커밋한 날)으로 채운다.
+DATES_FILE = SRC / "dates.json"
+_dates = json.loads(DATES_FILE.read_text(encoding="utf-8")) if DATES_FILE.exists() else {}
+
+
+def _git_dates(rel):
+    import subprocess
+    try:
+        out = subprocess.run(["git", "log", "--follow", "--format=%cs", "--", rel], cwd=ROOT,
+                             capture_output=True, text=True, check=True).stdout.split()
+        dirty = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", rel], cwd=ROOT).returncode != 0
+    except Exception:
+        return UPDATED, UPDATED
+    if not out:
+        return UPDATED, UPDATED
+    return out[-1], (UPDATED if dirty else out[0])
+
+
+def page_dates(*files):
+    """원본 파일들의 (작성일, 수정일). 여러 파일이면 가장 이른 작성일, 가장 늦은 수정일."""
+    import hashlib
+    pubs, mods = [], []
+    for f in files:
+        f = Path(f)
+        if not f.exists():
+            continue
+        rel = f.relative_to(ROOT).as_posix()
+        h = hashlib.md5(f.read_bytes()).hexdigest()
+        rec = _dates.get(rel)
+        if rec is None:
+            pub, mod = _git_dates(rel)
+            rec = _dates[rel] = {"published": pub, "modified": mod, "hash": h}
+        elif rec["hash"] != h:
+            rec.update(modified=UPDATED, hash=h)
+        pubs.append(rec["published"])
+        mods.append(rec["modified"])
+    if not mods:
+        return UPDATED, UPDATED
+    return min(pubs), max(mods)
+
+
+def save_dates():
+    DATES_FILE.write_text(json.dumps(dict(sorted(_dates.items())), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+
+# ── 자주 묻는 질문 → FAQPage 구조화 데이터 ────────────────────────────────
+def faq_ld(body):
+    """본문의 <h2>자주 묻는 질문</h2> 아래 h3(질문)·다음 내용(답)을 FAQPage로 만든다."""
+    m = re.search(r"<h2[^>]*>\s*자주 묻는 질문\s*</h2>(.*?)(?=<h2|\Z)", body, re.S)
+    if not m:
+        return None
+    pairs = re.findall(r"<h3[^>]*>(.*?)</h3>(.*?)(?=<h3|\Z)", m.group(1), re.S)
+
+    def text(s):
+        return html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s))).strip()
+
+    qa = [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
+          for q, a in pairs if text(q) and text(a)]
+    return {"@type": "FAQPage", "mainEntity": qa} if qa else None
+
+
+# ── 참고한 공식 자료 ─────────────────────────────────────────────────────
+def sources_html(sources):
+    """sources: [(이름, 주소), ...] → 출처 목록 HTML."""
+    if not sources:
+        return ""
+    lis = "".join(
+        f'<li><a href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a></li>' for n, u in sources
+    )
+    return f'<section class="sources"><h2>참고한 공식 자료</h2><ul>{lis}</ul></section>'
+
+
+def parse_sources(value):
+    """앞머리 한 줄 'sources: 이름 | 주소 ; 이름 | 주소' 를 목록으로."""
+    out = []
+    for part in (value or "").split(";"):
+        if "|" in part:
+            n, u = part.split("|", 1)
+            out.append((n.strip(), u.strip()))
+    return out
 
 
 # 컨닝 시리즈 (푸터 한 줄)
@@ -73,6 +167,8 @@ def read_guides(folder, section_id):
                 meta[k.strip()] = v.strip()
         guides.append({
             "slug": f.stem,
+            "file": f,
+            "sources": parse_sources(meta.get("sources")),
             "section": section_id,
             "path": f"/{section_id}/{f.stem}/",
             "title": meta["title"],
@@ -340,6 +436,8 @@ def build_section(section, sections):
 {guides_html}
 <script src="{url('/assets/app.js')}" defer></script>
 """
+    sdir = SRC / "sections" / section["id"]
+    LASTMOD[section["path"]] = page_dates(sdir / "section.json", sdir / "items.json", *[g["file"] for g in section["guides"]])[1]
     write(section["path"], layout(
         title=section["title"], page_title=f"{section['page_title']} | {SITE_NAME}",
         description=section["description"], path=section["path"], body=body, sections=sections,
@@ -348,6 +446,8 @@ def build_section(section, sections):
 
     guides = section["guides"]
     for i, g in enumerate(guides):
+        pub, mod = page_dates(g["file"])
+        LASTMOD[g["path"]] = mod
         related = [guides[(i + k) % len(guides)] for k in (1, 2, 3) if len(guides) > k]
         related_html = (
             f'<h2>함께 보면 좋은 가이드</h2><ul class="cards">\n{guide_cards(related)}\n</ul>' if related else ""
@@ -356,8 +456,9 @@ def build_section(section, sections):
 <nav class="crumbs" aria-label="위치"><a href="{url('/')}">홈</a> › <a href="{url(section['path'])}">{esc(section['title'])}</a></nav>
 <article class="article">
   <h1>{esc(g['title'])}</h1>
-  <p class="meta">최종 업데이트 {UPDATED}</p>
+  {date_line(pub, mod)}
   {g['body']}
+  {sources_html(g['sources'])}
   <p class="disclaimer">{esc(section['disclaimer'])}</p>
 </article>
 {calc_script(g)}
@@ -370,11 +471,15 @@ def build_section(section, sections):
         ld = {"@context": "https://schema.org", "@graph": [
             {
                 "@type": "Article", "headline": g["title"], "description": g["description"],
-                "dateModified": UPDATED, "inLanguage": "ko", "mainEntityOfPage": SITE_URL + g["path"],
-                "author": {"@type": "Organization", "name": SITE_NAME},
+                "datePublished": pub, "dateModified": mod, "inLanguage": "ko", "mainEntityOfPage": SITE_URL + g["path"],
+                "author": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL + "/"},
+                "publisher": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL + "/"},
             },
             ld,
         ]}
+        faq = faq_ld(g["body"])
+        if faq:
+            ld["@graph"].append(faq)
         write(g["path"], layout(title=g["title"], description=g["description"], path=g["path"], body=body, sections=sections, json_ld=ld))
 
 
@@ -413,7 +518,7 @@ def build_static_pages(sections):
 """),
         "/privacy/": ("개인정보처리방침", f"{SITE_NAME}의 개인정보처리방침입니다. 수집하는 정보, 쿠키와 광고, 이용자의 권리를 안내합니다.", f"""
 <h1>개인정보처리방침</h1>
-<p>{esc(SITE_NAME)}(이하 '사이트')는 이용자의 개인정보를 중요하게 생각하며, 관련 법령을 준수합니다. 이 방침은 {UPDATED}부터 적용됩니다.</p>
+<p>{esc(SITE_NAME)}(이하 '사이트')는 이용자의 개인정보를 중요하게 생각하며, 관련 법령을 준수합니다. 이 방침은 {PRIVACY_FROM}부터 적용됩니다.</p>
 <h2>1. 수집하는 개인정보</h2>
 <p>사이트는 회원가입 기능이 없으며, 이용자가 직접 입력하는 개인정보를 수집하지 않습니다. 이메일로 문의하시는 경우 답변을 위해 보내 주신 이메일 주소와 문의 내용만을 이용하며, 답변 완료 후 지체 없이 파기합니다.</p>
 <h2>2. 자동으로 수집되는 정보</h2>
@@ -448,7 +553,7 @@ def build_static_pages(sections):
 def build_meta_files(sections):
     guides = [g for s in sections for g in s["guides"]]
     paths = ["/"] + [s["path"] for s in sections] + [g["path"] for g in guides] + ["/about/", "/privacy/", "/contact/"]
-    entries = "\n".join(f"  <url><loc>{SITE_URL}{p}</loc><lastmod>{UPDATED}</lastmod></url>" for p in paths)
+    entries = "\n".join(f"  <url><loc>{SITE_URL}{p}</loc><lastmod>{LASTMOD.get(p, max(LASTMOD.values(), default=UPDATED))}</lastmod></url>" for p in paths)
     (OUT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{entries}\n</urlset>\n',
         encoding="utf-8",
@@ -488,6 +593,7 @@ def main():
         build_section(s, sections)
     build_static_pages(sections)
     build_meta_files(sections)
+    save_dates()
     total = sum(len(s["guides"]) for s in sections)
     print(f"built {len(sections)} sections, {total} guides → {OUT}")
 
