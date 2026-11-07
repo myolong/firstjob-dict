@@ -678,5 +678,81 @@
 "aka": [
 "온보딩뜻"
 ]
+},
+{
+"name": "SUM",
+"cat": "엑셀",
+"mean": "범위의 숫자를 모두 더하는 함수",
+"ex": "=SUM(C2:C6) · 단축키 Alt + =",
+"tip": "합계",
+"guide": "excel-functions",
+"aka": [
+"엑셀 합계",
+"썸 함수"
+]
+},
+{
+"name": "COUNTIF",
+"cat": "엑셀",
+"mean": "조건에 맞는 칸의 개수를 세는 함수",
+"ex": "=COUNTIF(B2:B6,\"영업\")",
+"tip": "조건별 개수",
+"guide": "excel-functions",
+"aka": [
+"COUNTIFS",
+"카운트이프"
+]
+},
+{
+"name": "SUMIF·SUMIFS",
+"cat": "엑셀",
+"mean": "조건에 맞는 값만 더하는 함수",
+"ex": "=SUMIF(B2:B6,\"영업\",C2:C6)",
+"tip": "조건별 합계",
+"guide": "excel-functions",
+"aka": [
+"SUMIF",
+"SUMIFS",
+"썸이프"
+]
+},
+{
+"name": "IF",
+"cat": "엑셀",
+"mean": "조건이 맞으면 A, 아니면 B를 보여 주는 함수",
+"ex": "=IF(C2>=1000000,\"달성\",\"미달\")",
+"tip": "조건 판단",
+"guide": "excel-functions",
+"aka": [
+"이프 함수",
+"IFS",
+"IFERROR"
+]
+},
+{
+"name": "VLOOKUP",
+"cat": "엑셀",
+"mean": "표의 첫 열에서 값을 찾아 같은 행의 다른 열 값을 가져오는 함수",
+"ex": "=VLOOKUP(\"박지훈\",A2:C6,3,FALSE)",
+"tip": "마지막 인수는 꼭 FALSE",
+"guide": "excel-functions",
+"aka": [
+"브이룩업",
+"XLOOKUP",
+"엑셀 찾기"
+]
+},
+{
+"name": "절대참조($)",
+"cat": "엑셀",
+"mean": "수식을 끌어 채워도 범위가 움직이지 않게 고정",
+"ex": "$A$2:$C$6 · 범위 선택 후 F4",
+"tip": "고정 칸",
+"guide": "excel-functions",
+"aka": [
+"F4",
+"달러 표시",
+"#N/A 오류"
+]
 }
 ]
