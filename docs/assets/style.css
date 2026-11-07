@@ -218,3 +218,4 @@ main h1{font-family:var(--hand);font-weight:400;font-size:clamp(2.1rem,5.5vw,2.8
 .calc-home a:hover{box-shadow:5px 5px 0 var(--pen);transform:translate(-1px,-1px)}
 .calc-home h2 small{font-family:var(--sans)}
 @media print{body{background:#fff !important;background-image:none !important}}
+.sources ul{font-size:15px}.sources a{word-break:break-all}
