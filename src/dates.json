@@ -154,6 +154,11 @@
   "modified": "2026-11-07",
   "hash": "9c60582b5a8855f1e144e910133367c5"
  },
+ "src/sections/insurance/guides/health-checkup.html": {
+  "published": "2026-11-09",
+  "modified": "2026-11-09",
+  "hash": "d9d8dfa55d57392a1604d3d4a79addeb"
+ },
  "src/sections/insurance/guides/insurance-priority.html": {
   "published": "2026-11-03",
   "modified": "2026-11-07",
@@ -181,13 +186,13 @@
  },
  "src/sections/insurance/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-03",
-  "hash": "08ca3b654bff4c12a8a8c2a98c1c6d17"
+  "modified": "2026-11-09",
+  "hash": "66e73ddf68a442d8371e5ad46de33dc4"
  },
  "src/sections/insurance/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-03",
-  "hash": "9beefb27702c71edf388bbea24482d43"
+  "modified": "2026-11-09",
+  "hash": "60c00574e128893b83c0bc1a6762efcb"
  },
  "src/sections/office/guides/abbreviations.html": {
   "published": "2026-11-03",
@@ -214,15 +219,20 @@
   "modified": "2026-11-07",
   "hash": "2beb8ac9f104c24f471ecbfc6cb00ecd"
  },
+ "src/sections/office/guides/wedding-funeral-money.html": {
+  "published": "2026-11-09",
+  "modified": "2026-11-09",
+  "hash": "a0a0560e79ca483c74c4a2dc9e790719"
+ },
  "src/sections/office/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "d3bc999f9f1d6de25bca619a291e9fad"
+  "modified": "2026-11-09",
+  "hash": "308a58bf70696b497df5598f044b718b"
  },
  "src/sections/office/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "0c9d2137bfaa78c00be218f33434512c"
+  "modified": "2026-11-09",
+  "hash": "9e74ede120fb0463205d8b093c5e13e3"
  },
  "src/sections/pay/guides/annual-leave.html": {
   "published": "2026-11-03",
