@@ -56,13 +56,13 @@
  },
  "src/sections/first-day/guides/first-day-checklist.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "0c5a2df2ec8843d9dd40edcef0d8cd62"
+  "modified": "2026-11-09",
+  "hash": "b1946876ed95ec2df040589f701677e4"
  },
  "src/sections/first-day/guides/first-week.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "f5548cd2ef70be0d6797f8c4877db415"
+  "modified": "2026-11-09",
+  "hash": "9224fbb779b2df4adfffa3296979f1c2"
  },
  "src/sections/first-day/items.json": {
   "published": "2026-11-03",
@@ -76,8 +76,8 @@
  },
  "src/sections/first-home/guides/first-week.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "25b356f5d9f5d9ed4388de34b1815cce"
+  "modified": "2026-11-09",
+  "hash": "a417d5bb8a7872eb022113771ddcbb60"
  },
  "src/sections/first-home/guides/move-in-report.html": {
   "published": "2026-11-03",
@@ -196,8 +196,8 @@
  },
  "src/sections/office/guides/abbreviations.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "c555111a18aa5ed8d55b17a3428b57e8"
+  "modified": "2026-11-09",
+  "hash": "9eaf90d7c80df9d51fb2b6d941921e8f"
  },
  "src/sections/office/guides/business-loanwords.html": {
   "published": "2026-11-03",
@@ -244,6 +244,11 @@
   "modified": "2026-11-07",
   "hash": "ef674f912a699709ccc3e64c383b0167"
  },
+ "src/sections/pay/guides/insurance-rates.html": {
+  "published": "2026-11-09",
+  "modified": "2026-11-09",
+  "hash": "b6d3d02c719a77fc0e283300e41c06d3"
+ },
  "src/sections/pay/guides/resignation.html": {
   "published": "2026-11-06",
   "modified": "2026-11-07",
@@ -261,8 +266,8 @@
  },
  "src/sections/pay/guides/take-home.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "7ebda65f02e4702d3a5c6edfe5ad4598"
+  "modified": "2026-11-09",
+  "hash": "169b6735f659c4e3761f10e623cb191c"
  },
  "src/sections/pay/guides/unemployment.html": {
   "published": "2026-11-03",

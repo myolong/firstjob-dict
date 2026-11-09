@@ -22,7 +22,7 @@
     return isNaN(v) ? 0 : v;
   }
   function won(n) { return Math.round(n).toLocaleString('ko-KR') + '원'; }
-  function floor10(n) { return Math.floor(n / 10) * 10; }
+  function floor10(n) { return Math.floor(Math.round(n * 100) / 1000) * 10; }  // 부동소수 오차(25199.999…) 보정
   function rows(list) {
     return '<table class="rows"><tbody>' + list.map(function (r) {
       return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>';
