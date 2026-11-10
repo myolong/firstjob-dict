@@ -204,6 +204,11 @@
   "modified": "2026-11-07",
   "hash": "8da5c8f9f9e089cbb38267884ff505d7"
  },
+ "src/sections/office/guides/business-manners.html": {
+  "published": "2026-11-10",
+  "modified": "2026-11-10",
+  "hash": "6419b541354506d54f7dccbdf5a39cac"
+ },
  "src/sections/office/guides/email-basics.html": {
   "published": "2026-11-03",
   "modified": "2026-11-07",
@@ -226,13 +231,13 @@
  },
  "src/sections/office/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "308a58bf70696b497df5598f044b718b"
+  "modified": "2026-11-10",
+  "hash": "8175a5d6f6a8781698797dd013e4c400"
  },
  "src/sections/office/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "9e74ede120fb0463205d8b093c5e13e3"
+  "modified": "2026-11-10",
+  "hash": "7bf9fad21ddbc6041f915c73daf0db80"
  },
  "src/sections/pay/guides/annual-leave.html": {
   "published": "2026-11-03",
