@@ -538,4 +538,40 @@
     }
     bind(f, run);
   })();
+  /* ── 15. 모두의카드(K-패스) 교통비 환급 ───────────────────── */
+  (function () {
+    var f = $('calc-modu');
+    if (!f) return;
+    // 수도권 기준 (2026년 10월 이용분부터): [정률, 일반형 기준금액, 플러스형 기준금액]
+    var TYPES = {
+      normal: [0.20, 62000, 100000, '일반'],
+      youth:  [0.30, 55000, 90000, '청년·2자녀·어르신'],
+      multi:  [0.50, 45000, 80000, '3자녀 이상'],
+      low:    [0.533, 45000, 80000, '저소득층']
+    };
+    function run() {
+      var t = TYPES[$('md-type').value] || TYPES.normal;
+      var basic = num('md-basic'), plus = num('md-plus'), shift = Math.min(num('md-shift'), basic + plus);
+      var trips = num('md-trips'), total = basic + plus;
+      if (!total) { $('md-out').innerHTML = '<p class="note">한 달 교통비를 넣으면 계산됩니다.</p>'; return; }
+      var rate = (total - shift) * t[0] + shift * (t[0] + 0.3);
+      var gen = Math.max(basic - t[1], 0);
+      var plu = Math.max(total - t[2], 0);
+      var list = [['정률형 (' + Math.round(t[0] * 1000) / 10 + '% 환급)', rate], ['정액형 일반형 (기준 ' + won(t[1]) + ')', gen], ['정액형 플러스형 (기준 ' + won(t[2]) + ')', plu]];
+      var best = list.reduce(function (a, b) { return b[1] > a[1] ? b : a; });
+      var html;
+      if (trips && trips < 15) {
+        html = '<p class="big">0원<small>월 15회 미만이라 환급 없음</small></p><p class="warn">한 달에 15번 이상 타야 환급됩니다(가입한 첫 달은 예외).</p>';
+      } else {
+        html = '<p class="big">' + won(best[1]) + '<small>예상 환급액 · ' + best[0].split(' (')[0] + ' 적용</small></p>';
+      }
+      html += rows(list.map(function (r) { return [r[0] + (r === best ? ' ✔' : ''), won(r[1])]; }).concat([
+        ['한 달 교통비', won(total)],
+        ['환급 뒤 실제 부담', won(total - (trips && trips < 15 ? 0 : best[1]))]
+      ]));
+      html += '<p class="note">' + t[3] + ' 유형, 수도권 기준 추정입니다. 세 방식 중 가장 많이 돌려받는 방식이 자동으로 적용됩니다. 실제 환급은 이용 건별로 계산되어 조금 다를 수 있습니다.</p>';
+      $('md-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
 })();

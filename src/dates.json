@@ -309,6 +309,11 @@
   "modified": "2026-11-07",
   "hash": "5f5c39a13eb6a86d5e56fd4d1a861fed"
  },
+ "src/sections/youth/guides/transit-pass-calculator.html": {
+  "published": "2026-11-11",
+  "modified": "2026-11-11",
+  "hash": "96b881aaa2596a6f769818cf9604f650"
+ },
  "src/sections/youth/guides/youth-housing.html": {
   "published": "2026-11-03",
   "modified": "2026-11-07",
@@ -316,17 +321,17 @@
  },
  "src/sections/youth/guides/youth-portal.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "5ca8f20411ca7b8a30f2ef05e1f8d77d"
+  "modified": "2026-11-11",
+  "hash": "66d58b5e1afffb8764310241f7f1ffde"
  },
  "src/sections/youth/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "f1e989477e9fe279c60c7cfc81831e96"
+  "modified": "2026-11-11",
+  "hash": "c435be64b8f9a7c8a7ffca2c9a82cc39"
  },
  "src/sections/youth/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "c864f21570fcfe3b84c3a63f1ceb1fde"
+  "modified": "2026-11-11",
+  "hash": "09b8685a593a8995a5a707e56b7cb6eb"
  }
 }
