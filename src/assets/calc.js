@@ -574,4 +574,78 @@
     }
     bind(f, run);
   })();
+
+  /* ── 16. 전세 vs 월세 비교 ─────────────────────────────────── */
+  (function () {
+    var f = $('calc-rent');
+    if (!f) return;
+    var TAX = 0.154;   // 이자소득 원천징수 14% + 지방소득세 1.4%
+    function run() {
+      var jd = num('rt-jeonse'), loan = Math.min(num('rt-loan'), jd), lr = num('rt-loanrate') / 100;
+      var wd = num('rt-wdeposit'), rent = num('rt-rent'), dr = num('rt-saverate') / 100, base = num('rt-base') / 100;
+      if (!jd || !rent) { $('rt-out').innerHTML = '<p class="note">전세 보증금과 월세를 넣으면 계산됩니다.</p>'; return; }
+      var own = jd - loan, after = dr * (1 - TAX);
+      var jLoan = loan * lr / 12, jOpp = own * after / 12, jTotal = jLoan + jOpp;
+      var wOpp = wd * after / 12, wTotal = rent + wOpp;
+      var diff = wTotal - jTotal;
+      var html = '<p class="big">' + (diff >= 0 ? '전세' : '월세') + '가 한 달 ' + won(Math.abs(diff)) + ' 덜 듦<small>1년이면 ' + won(Math.abs(diff) * 12) + ' 차이</small></p>';
+      html += rows([
+        ['전세 한 달 비용', won(jTotal)],
+        ['└ 대출 이자', won(jLoan)],
+        ['└ 내 돈을 묶어 둔 비용 (세후 이자)', won(jOpp)],
+        ['월세 한 달 비용', won(wTotal)],
+        ['└ 월세', won(rent)],
+        ['└ 월세 보증금을 묶어 둔 비용', won(wOpp)]
+      ]);
+      if (jd > wd) {
+        var conv = rent * 12 / (jd - wd);
+        var cap = Math.min(0.10, base + 0.02);
+        html += rows([
+          ['이 집의 전월세 전환율', (conv * 100).toFixed(1) + '%'],
+          ['법정 상한 (기준금리 + 2%, 최대 10%)', (cap * 100).toFixed(1) + '%']
+        ]);
+        html += '<p class="note">전환율이 내 대출 금리보다 높으면 대출을 받아 전세로 가는 쪽이, 낮으면 월세가 유리한 편입니다. 법정 상한은 계약 기간 중 보증금 일부를 월세로 바꿀 때 적용됩니다.</p>';
+      }
+      html += '<p class="note">관리비, 중개보수, 전세보증보험료, 월세 세액공제는 넣지 않은 단순 비교입니다. 보증금을 돌려받지 못할 위험은 계산에 들어 있지 않습니다.</p>';
+      $('rt-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
+
+  /* ── 17. 적금·예금 만기 이자 ───────────────────────────────── */
+  (function () {
+    var f = $('calc-saving');
+    if (!f) return;
+    function run() {
+      var kind = $('sv-kind').value, amt = num('sv-amount'), n = Math.round(num('sv-months')), r = num('sv-rate') / 100;
+      var comp = $('sv-comp').value === 'comp', taxed = $('sv-tax').value === 'tax';
+      if (!amt || !n || !r) { $('sv-out').innerHTML = '<p class="note">금액, 기간, 금리를 넣으면 계산됩니다.</p>'; return; }
+      var i = r / 12, principal, interest;
+      if (kind === 'deposit') {
+        principal = amt;
+        interest = comp ? amt * (Math.pow(1 + i, n) - 1) : amt * i * n;
+      } else {
+        principal = amt * n;
+        interest = comp ? amt * ((1 + i) * (Math.pow(1 + i, n) - 1) / i - n) : amt * i * n * (n + 1) / 2;
+      }
+      interest = Math.floor(interest);
+      var it = taxed ? floor10(interest * 0.14) : 0, lt = taxed ? floor10(it * 0.1) : 0;
+      var net = interest - it - lt;
+      var html = '<p class="big">' + won(principal + net) + '<small>만기에 받는 돈 (세후)</small></p>';
+      html += rows([
+        ['원금 합계', won(principal)],
+        ['세전 이자', won(interest)],
+        ['이자소득세 (14%)', '-' + won(it)],
+        ['지방소득세 (1.4%)', '-' + won(lt)],
+        ['세후 이자', won(net)]
+      ]);
+      if (kind === 'saving') {
+        var eq = interest / principal / (n / 12);
+        html += '<p class="note">적금은 매달 넣은 돈마다 만기까지 남은 기간만큼만 이자가 붙습니다. 그래서 원금 합계 기준으로 보면 세전 연 ' + (Math.round(eq * 1000) / 10) + '%를 받은 셈이고, 같은 돈을 처음부터 같은 금리 예금에 넣은 것보다 이자가 적습니다.</p>';
+      }
+      html += '<p class="note">매달 같은 날 넣고 만기까지 유지했을 때의 추정입니다. 우대금리 조건, 중도해지, 은행별 원 단위 처리에 따라 실제 금액은 조금 다를 수 있습니다.</p>';
+      $('sv-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
 })();
