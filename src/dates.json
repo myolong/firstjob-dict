@@ -54,6 +54,11 @@
   "modified": "2026-11-03",
   "hash": "5695a739435b1b0ed14a73d10068eccc"
  },
+ "src/sections/first-day/guides/employment-contract.html": {
+  "published": "2026-11-13",
+  "modified": "2026-11-13",
+  "hash": "024f5ade5f1db2bb34d0e71857487c5b"
+ },
  "src/sections/first-day/guides/first-day-checklist.html": {
   "published": "2026-11-03",
   "modified": "2026-11-09",
@@ -66,13 +71,13 @@
  },
  "src/sections/first-day/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-03",
-  "hash": "a7940cac8b218e2ef6d28871fee5d458"
+  "modified": "2026-11-13",
+  "hash": "bc02213fcbb78fd67c8106727979a88f"
  },
  "src/sections/first-day/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-03",
-  "hash": "acbeab1abad5d7fff2d7b8cf48ec22de"
+  "modified": "2026-11-13",
+  "hash": "849e6a7c0292cc8aa86b64b2425a4c4d"
  },
  "src/sections/first-home/guides/first-week.html": {
   "published": "2026-11-03",
