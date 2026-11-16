@@ -194,6 +194,8 @@ def read_guides(folder, section_id):
             "description": meta["description"],
             "order": int(meta.get("order", 99)),
             "calc": meta.get("calc") == "yes",
+            "calc_rank": int(meta.get("calc_rank", 99)),
+            "calc_hint": meta.get("calc_hint", ""),
             "short": meta.get("short", ""),
             "home": meta.get("home") == "yes",
             "body": body.strip().replace('href="/', f'href="{BASE_PATH}/').replace('src="/', f'src="{BASE_PATH}/'),
@@ -340,16 +342,40 @@ def item_rows(section):
     return "\n".join(rows)
 
 
+CALC_GROUPS = [  # 홈 '자주 쓰는 계산기' 분야 묶음: (아이콘, 이름, 메뉴 id들)
+    ("🧮", "월급·퇴사", ["pay"]),
+    ("💳", "돈 관리·보험", ["first-salary", "insurance"]),
+    ("🔑", "자취·교통", ["first-home", "youth"]),
+    ("🚗", "첫차", ["first-car"]),
+]
+
+
 def calc_block(sections):
-    """홈 상단: 계산기 바로가기 (calc: true 인 가이드)."""
+    """홈 상단: 계산기 바로가기 (calc: yes 인 가이드)를 분야별 목록으로."""
     calcs = [g for s in sections for g in s["guides"] if g.get("calc")]
     if not calcs:
         return ""
-    lis = "".join(
-        f'<li><a href="{url(g["path"])}"><strong>{esc(g["short"] or g["title"])}</strong><span>{esc(g["description"])}</span></a></li>'
-        for g in calcs
+    known = {sid for _, _, ids in CALC_GROUPS for sid in ids}
+    groups = [(i, n, ids) for i, n, ids in CALC_GROUPS]
+    rest = [g for g in calcs if g["section"] not in known]
+    cols, tabs = [], ['<button type="button" class="on" data-g="all">전체</button>']
+    for k, (icon, name, ids) in enumerate(groups):
+        items = sorted([g for g in calcs if g["section"] in ids], key=lambda g: (ids.index(g["section"]), g["calc_rank"]))
+        if k == len(groups) - 1:
+            items += rest
+        if not items:
+            continue
+        lis = "".join(
+            f'<li><a href="{url(g["path"])}"><b>{esc(re.sub(r" 계산기$", "", g["short"] or g["title"]))}</b>'
+            f'<span>{esc(g["calc_hint"])}</span><i aria-hidden="true">→</i></a></li>'
+            for g in items
+        )
+        cols.append(f'<div class="calc-col" data-g="g{k}"><h3>{icon} {esc(name)}</h3><ol>{lis}</ol></div>')
+        tabs.append(f'<button type="button" data-g="g{k}">{icon} {esc(name)}</button>')
+    return (
+        f'<section class="calc-home"><h2>자주 쓰는 계산기 <small>2026년 기준 · {len(calcs)}개</small></h2>'
+        f'<div class="calc-tabs" hidden>{"".join(tabs)}</div><div class="calc-cols">{"".join(cols)}</div></section>'
     )
-    return f'<section class="calc-home"><h2>자주 쓰는 계산기 <small>2026년 기준</small></h2><ul>{lis}</ul></section>'
 
 
 def search_index(sections):
