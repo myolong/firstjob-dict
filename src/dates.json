@@ -6,28 +6,28 @@
  },
  "src/sections/first-car/guides/car-acquisition-tax.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "fda21887508aee51e3fbf98e943940d8"
+  "modified": "2026-11-16",
+  "hash": "8297731d6c288f1f4e2e0325c517e2b5"
  },
  "src/sections/first-car/guides/car-annual-tax.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "87cfbf07502cd32032ad7eab2b58c4ea"
+  "modified": "2026-11-16",
+  "hash": "0637c872a1c7a70003635462cf02641c"
  },
  "src/sections/first-car/guides/car-budget-calculator.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "9a2de85b132e440a498320a3e995e582"
+  "modified": "2026-11-16",
+  "hash": "681c5464a3a33a500180be67abadb61a"
  },
  "src/sections/first-car/guides/car-compare-calculator.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "469ac01f7753ed62b4772403bd419f64"
+  "modified": "2026-11-16",
+  "hash": "f237cd51cf7bf6ba20092d345b42c601"
  },
  "src/sections/first-car/guides/car-loan-calculator.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "afdf14221b82eaec2386874d1b690176"
+  "modified": "2026-11-16",
+  "hash": "a5242d43c6c597e735515ef65df198f7"
  },
  "src/sections/first-car/guides/car-tax-registration.html": {
   "published": "2026-11-03",
@@ -86,13 +86,13 @@
  },
  "src/sections/first-home/guides/jeonse-vs-wolse.html": {
   "published": "2026-11-12",
-  "modified": "2026-11-12",
-  "hash": "e1a5e4d017529b9c5d87e17f679bd761"
+  "modified": "2026-11-16",
+  "hash": "583117d3675c370fce3f9ec037f8d05a"
  },
  "src/sections/first-home/guides/living-cost.html": {
   "published": "2026-11-16",
   "modified": "2026-11-16",
-  "hash": "164049c93a3568aca1753c5e197a78be"
+  "hash": "624f7e653cc46c4e1fad272dacbd18d6"
  },
  "src/sections/first-home/guides/move-in-report.html": {
   "published": "2026-11-03",
@@ -121,8 +121,8 @@
  },
  "src/sections/first-salary/guides/budget-planner.html": {
   "published": "2026-11-05",
-  "modified": "2026-11-07",
-  "hash": "3b25d8c274627b7d73a0eda1d1da590f"
+  "modified": "2026-11-16",
+  "hash": "22cbecb7295c75c380848592dfb23749"
  },
  "src/sections/first-salary/guides/check-vs-credit-card.html": {
   "published": "2026-11-04",
@@ -141,13 +141,13 @@
  },
  "src/sections/first-salary/guides/revolving.html": {
   "published": "2026-11-04",
-  "modified": "2026-11-07",
-  "hash": "85d34bdae42ce89ef05a3ca6af1430ac"
+  "modified": "2026-11-16",
+  "hash": "4daa7b9ec2a1261449a8da7dd0f8570c"
  },
  "src/sections/first-salary/guides/savings-interest.html": {
   "published": "2026-11-12",
-  "modified": "2026-11-12",
-  "hash": "dca05eb94f5a9db4ebfe3e586086c422"
+  "modified": "2026-11-16",
+  "hash": "ca1e2834e090b86d5700b4d487157374"
  },
  "src/sections/first-salary/guides/year-end-tax.html": {
   "published": "2026-11-06",
@@ -181,8 +181,8 @@
  },
  "src/sections/insurance/guides/insurance-priority.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "2490d7e3113f11e71d4533e4381458df"
+  "modified": "2026-11-16",
+  "hash": "0a90dda562bcedc00db1ec7e59d822ed"
  },
  "src/sections/insurance/guides/national-pension.html": {
   "published": "2026-11-03",
@@ -261,8 +261,8 @@
  },
  "src/sections/pay/guides/annual-leave.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "87be001380902cb2f17e0d737cd25237"
+  "modified": "2026-11-16",
+  "hash": "a52d06b586ce8407ac4c93c0b3386a1a"
  },
  "src/sections/pay/guides/holidays-2027.html": {
   "published": "2026-11-05",
@@ -277,7 +277,7 @@
  "src/sections/pay/guides/parental-leave-pay.html": {
   "published": "2026-11-16",
   "modified": "2026-11-16",
-  "hash": "f894b71c5481e4943d44e7b00ca3c9f8"
+  "hash": "7d73d6f2ccba529c1f30b40d02906af7"
  },
  "src/sections/pay/guides/resignation.html": {
   "published": "2026-11-06",
@@ -286,28 +286,28 @@
  },
  "src/sections/pay/guides/salary-convert.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "d7f67b9a3853495be5dfc9d4df6eed6c"
+  "modified": "2026-11-16",
+  "hash": "0cd0ceb1001b5e8173a36ccf39feb039"
  },
  "src/sections/pay/guides/severance.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "ece97c00fc05f915b4d9cf85618fb6d5"
+  "modified": "2026-11-16",
+  "hash": "9baa3fb610c6c3af2650195c099d20cc"
  },
  "src/sections/pay/guides/take-home.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "169b6735f659c4e3761f10e623cb191c"
+  "modified": "2026-11-16",
+  "hash": "c13d806d0ae31921afa824b317ef5213"
  },
  "src/sections/pay/guides/unemployment.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "d9709d02c4209100a86cc1f3cca1f455"
+  "modified": "2026-11-16",
+  "hash": "a464e58e56be0d9a4edc612beea5ff42"
  },
  "src/sections/pay/guides/weekly-holiday-pay.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "a034d9051ff588fe13bc988783f258e7"
+  "modified": "2026-11-16",
+  "hash": "4a6bf85f9e3ad4bf3c72c92c220b3fa9"
  },
  "src/sections/pay/items.json": {
   "published": "2026-11-03",
@@ -336,8 +336,8 @@
  },
  "src/sections/youth/guides/transit-pass-calculator.html": {
   "published": "2026-11-11",
-  "modified": "2026-11-11",
-  "hash": "96b881aaa2596a6f769818cf9604f650"
+  "modified": "2026-11-16",
+  "hash": "38ff3fe189b5a5d7df02cba24dfe26b2"
  },
  "src/sections/youth/guides/youth-housing.html": {
   "published": "2026-11-03",

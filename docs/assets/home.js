@@ -32,4 +32,17 @@
   }
   q.addEventListener('focus', load);
   q.addEventListener('input', function () { load(); render(); });
+
+  // 자주 쓰는 계산기: 분야 탭
+  var tabs = document.querySelector('.calc-tabs');
+  if (tabs) {
+    tabs.hidden = false;
+    tabs.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      var g = b.getAttribute('data-g');
+      Array.prototype.forEach.call(tabs.querySelectorAll('button'), function (x) { x.classList.toggle('on', x === b); });
+      Array.prototype.forEach.call(document.querySelectorAll('.calc-col'), function (c) { c.hidden = g !== 'all' && c.getAttribute('data-g') !== g; });
+    });
+  }
 })();
