@@ -648,4 +648,86 @@
     }
     bind(f, run);
   })();
+
+  /* ── 18. 출산전후휴가·육아휴직 급여 ─────────────────────────── */
+  (function () {
+    var f = $('calc-parental');
+    if (!f) return;
+    var MAT_CAP30 = 2200000;   // 출산전후휴가 급여 30일 상한 (90일 660만원, 고시 제2026-67호, 2026.9.18~12.31)
+    var SIX = [2500000, 2500000, 3000000, 3500000, 4000000, 4500000];   // 6+6 부모육아휴직제 월 상한
+    function run() {
+      var w = num('pl-wage'), small = $('pl-size').value === 'small', mat = $('pl-mat').value === 'yes';
+      var n = Math.min(Math.round(num('pl-months')), 18), both = $('pl-both').value === 'yes';
+      if (!w) { $('pl-out').innerHTML = '<p class="note">월 통상임금을 넣으면 계산됩니다.</p>'; return; }
+      var html = '', total = 0;
+      if (mat) {
+        var ins = small ? Math.min(w, MAT_CAP30) * 3 : Math.min(w, MAT_CAP30);
+        var co = small ? Math.max(w - MAT_CAP30, 0) * 2 : w * 2;
+        total += ins + co;
+        html += '<h3>출산전후휴가 90일</h3>' + rows([
+          ['고용보험에서 받는 급여', won(ins)],
+          ['회사가 주는 돈', won(co)],
+          ['합계', won(ins + co)]
+        ]);
+      }
+      if (n > 0) {
+        var list = [], sum = 0;
+        for (var m = 1; m <= n; m++) {
+          var a;
+          if (m <= 6 && both && m <= Math.min(n, 6)) a = Math.min(w, SIX[m - 1]);
+          else if (m <= 3) a = Math.min(w, 2500000);
+          else if (m <= 6) a = Math.min(w, 2000000);
+          else a = Math.min(w * 0.8, 1600000);
+          a = Math.max(a, 700000);
+          sum += a;
+          list.push(a);
+        }
+        total += sum;
+        var lines = [];
+        var i = 0;
+        while (i < list.length) {
+          var j = i;
+          while (j + 1 < list.length && list[j + 1] === list[i]) j++;
+          lines.push([(i === j ? (i + 1) + '개월째' : (i + 1) + '~' + (j + 1) + '개월째'), '월 ' + won(list[i])]);
+          i = j + 1;
+        }
+        lines.push(['육아휴직 ' + n + '개월 합계', won(sum)]);
+        html += '<h3>육아휴직 ' + n + '개월' + (both ? ' (6+6 적용)' : '') + '</h3>' + rows(lines);
+      }
+      html = '<p class="big">' + won(total) + '<small>휴가·휴직 기간에 받는 돈 합계 (세전 추정)</small></p>' + html;
+      html += '<p class="note">통상임금은 휴가·휴직 시작일 기준입니다. 고용보험 가입 기간 180일 이상 등 받을 조건을 채웠다고 보고 계산했고, 최저임금 하한과 일할 계산은 단순화했습니다.</p>';
+      $('pl-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
+
+  /* ── 19. 자취 첫 달 생활비 ─────────────────────────────────── */
+  (function () {
+    var f = $('calc-living');
+    if (!f) return;
+    var FIX = ['lv-rent', 'lv-mgmt', 'lv-util', 'lv-phone', 'lv-trans', 'lv-sub'];
+    var VAR = ['lv-food', 'lv-goods', 'lv-etc'];
+    var ONCE = ['lv-move', 'lv-broker', 'lv-furn', 'lv-start'];
+    function sum(ids) { return ids.reduce(function (a, id) { return a + num(id); }, 0); }
+    function run() {
+      var pay = num('lv-pay'), dep = num('lv-deposit');
+      var fix = sum(FIX), vari = sum(VAR), once = sum(ONCE), monthly = fix + vari;
+      if (!pay) { $('lv-out').innerHTML = '<p class="note">월 실수령액을 넣으면 계산됩니다.</p>'; return; }
+      var left = pay - monthly, house = num('lv-rent') + num('lv-mgmt');
+      var html = '<p class="big">' + (left >= 0 ? '매달 ' + won(left) + ' 남음' : '매달 ' + won(-left) + ' 부족') + '<small>실수령액에서 생활비를 뺀 금액</small></p>';
+      html += rows([
+        ['고정비 (월세·관리비·공과금·통신·교통·구독)', won(fix)],
+        ['변동비 (식비·생활용품·기타)', won(vari)],
+        ['한 달 생활비 합계', won(monthly)],
+        ['주거비 비중 (월세+관리비 ÷ 실수령액)', Math.round(house / pay * 100) + '%'],
+        ['첫 달 한 번 드는 돈 (이사·중개보수·가구·초기 생필품)', won(once)],
+        ['보증금', won(dep)],
+        ['입주 전에 준비할 돈 (보증금 + 한 번 드는 돈 + 첫 달 월세)', won(dep + once + num('lv-rent'))]
+      ]);
+      if (house / pay > 0.3) html += '<p class="warn">월세와 관리비가 실수령액의 30%를 넘습니다. 저축할 여유가 줄어드니 집 조건이나 다른 지출을 다시 살펴보세요.</p>';
+      if (left > 0) html += '<p class="note">남는 돈 중 일부는 첫 달부터 비상금이나 적금으로 먼저 떼어 두세요. 처음 몇 달은 예상하지 못한 생활용품 구입이 이어지는 경우가 많습니다.</p>';
+      $('lv-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
 })();
