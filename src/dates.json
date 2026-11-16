@@ -54,6 +54,16 @@
   "modified": "2026-11-03",
   "hash": "5695a739435b1b0ed14a73d10068eccc"
  },
+ "src/sections/first-day/guides/ai-cover-letter-check.html": {
+  "published": "2026-11-16",
+  "modified": "2026-11-16",
+  "hash": "14cc6312a96433469b5d8dd4cbdd7ab1"
+ },
+ "src/sections/first-day/guides/ai-interview.html": {
+  "published": "2026-11-16",
+  "modified": "2026-11-16",
+  "hash": "f31ed8cf86f91fd05fc18b63d7a8e63c"
+ },
  "src/sections/first-day/guides/employment-contract.html": {
   "published": "2026-11-13",
   "modified": "2026-11-13",
@@ -71,13 +81,13 @@
  },
  "src/sections/first-day/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-13",
-  "hash": "bc02213fcbb78fd67c8106727979a88f"
+  "modified": "2026-11-16",
+  "hash": "c8591f51e7950c35c2d0e63eaa4a2fe5"
  },
  "src/sections/first-day/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-13",
-  "hash": "849e6a7c0292cc8aa86b64b2425a4c4d"
+  "modified": "2026-11-16",
+  "hash": "9ef40af95fe4b64261d77bc32d6af769"
  },
  "src/sections/first-home/guides/first-week.html": {
   "published": "2026-11-03",

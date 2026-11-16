@@ -268,3 +268,6 @@ main h1{font-family:var(--hand);font-weight:400;font-size:clamp(2.1rem,5.5vw,2.8
 .calc-col a:hover::before{background:var(--pen);color:#fff;border-color:var(--pen)}
 @media(max-width:760px){.calc-col{transform:none !important}}
 @media print{.calc-col{transform:none !important;box-shadow:none;border:1px solid #999}.calc-col::before{display:none}}
+
+/* 글 속 예시 문구(문의 메일 등) */
+.guide-body blockquote,article blockquote{margin:12px 0;padding:12px 16px;background:#fffbe0;border-left:4px solid var(--pen);border-radius:0 6px 6px 0;font-size:15px}
