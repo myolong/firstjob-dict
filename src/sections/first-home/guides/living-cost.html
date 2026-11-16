@@ -1,0 +1,63 @@
+---
+title: 자취 생활비 계산기 - 첫 달 얼마 필요하고 매달 얼마 남나 (원룸 1인 기준)
+description: 월 실수령액과 월세, 관리비, 공과금, 식비를 넣으면 자취 한 달 생활비와 남는 돈을 계산합니다. 보증금·중개보수·가구처럼 첫 달에만 드는 돈, 입주 전에 준비할 금액, 주거비 30% 기준까지 정리했습니다.
+short: 자취 생활비 계산기
+calc: yes
+order: 0
+sources: 마이홈포털 (국토교통부) | https://www.myhome.go.kr ; 한국전력공사 사이버지점 | https://cyber.kepco.co.kr
+---
+<p>첫 자취는 월세만 생각하면 예산이 금방 모자랍니다. 관리비와 공과금, 식비, 그리고 <strong>첫 달에만 한꺼번에 나가는 돈</strong>까지 넣어 봐야 실제로 얼마가 남는지 알 수 있습니다. 아래 기본값은 수도권 원룸 1인 가구를 가정한 예시이니 내 상황에 맞게 고쳐 넣으세요.</p>
+
+<form class="calc" id="calc-living" onsubmit="return false">
+  <div class="fields">
+    <label>월 실수령액<input id="lv-pay" inputmode="numeric" data-money value="2,400,000"><span class="hint">세금·4대보험 뺀 실제 입금액</span></label>
+    <label>보증금<input id="lv-deposit" inputmode="numeric" data-money value="10,000,000"></label>
+    <label>월세<input id="lv-rent" inputmode="numeric" data-money value="550,000"></label>
+    <label>관리비<input id="lv-mgmt" inputmode="numeric" data-money value="80,000"><span class="hint">인터넷·수도 포함 여부 확인</span></label>
+    <label>전기·가스·수도<input id="lv-util" inputmode="numeric" data-money value="60,000"><span class="hint">겨울엔 가스비가 더 나옴</span></label>
+    <label>휴대폰·인터넷<input id="lv-phone" inputmode="numeric" data-money value="60,000"></label>
+    <label>교통비<input id="lv-trans" inputmode="numeric" data-money value="60,000"><span class="hint">환급 뒤 금액</span></label>
+    <label>구독료 (OTT·음악 등)<input id="lv-sub" inputmode="numeric" data-money value="20,000"></label>
+    <label>식비<input id="lv-food" inputmode="numeric" data-money value="450,000"><span class="hint">장보기 + 배달 + 회사 점심</span></label>
+    <label>생활용품<input id="lv-goods" inputmode="numeric" data-money value="50,000"><span class="hint">세제·휴지·화장품 등</span></label>
+    <label>기타 (경조사·쇼핑·모임)<input id="lv-etc" inputmode="numeric" data-money value="200,000"></label>
+    <label>이사비 (첫 달만)<input id="lv-move" inputmode="numeric" data-money value="200,000"></label>
+    <label>중개보수 (첫 달만)<input id="lv-broker" inputmode="numeric" data-money value="250,000"><span class="hint">계약 전에 공인중개사에게 금액 확인</span></label>
+    <label>가구·가전 (첫 달만)<input id="lv-furn" inputmode="numeric" data-money value="500,000"><span class="hint">옵션 원룸이면 줄어듦</span></label>
+    <label>초기 생필품 (첫 달만)<input id="lv-start" inputmode="numeric" data-money value="200,000"><span class="hint">침구·주방용품·청소용품</span></label>
+  </div>
+  <div class="result" id="lv-out" aria-live="polite"></div>
+</form>
+
+<h2>한 달 생활비는 이렇게 나눠 보세요</h2>
+<table>
+<thead><tr><th>구분</th><th>항목</th><th>줄이는 방법</th></tr></thead>
+<tbody>
+<tr><td>고정비</td><td>월세, 관리비, 공과금, 통신비, 교통비, 구독료</td><td>계약할 때 정해지는 돈이라 처음에 잘 골라야 함. 알뜰폰, 교통비 환급, 안 쓰는 구독 해지</td></tr>
+<tr><td>변동비</td><td>식비, 생활용품, 경조사·쇼핑·모임</td><td>주 단위 예산. 장보기 목록, 배달은 주 몇 번으로 정하기</td></tr>
+<tr><td>첫 달만</td><td>이사비, 중개보수, 가구·가전, 초기 생필품</td><td>옵션 원룸, 중고 거래, 꼭 필요한 것만 먼저 사기</td></tr>
+</tbody>
+</table>
+
+<h2>기본값 예시로 계산하면</h2>
+<p>실수령액 240만원, 보증금 1,000만원·월세 55만원 원룸이라면 한 달 생활비는 153만원이고 매달 87만원이 남습니다. 월세와 관리비(63만원)가 실수령액의 26%입니다. 입주 전에는 보증금 1,000만원, 첫 달에만 드는 돈 115만원, 첫 달 월세 55만원을 합쳐 <strong>1,170만원</strong>을 준비해야 합니다.</p>
+
+<h2>자취 예산 짤 때 기억할 것</h2>
+<ul>
+<li><strong>주거비는 실수령액의 30% 안쪽</strong>: 월세와 관리비가 이보다 많으면 저축이 어려워집니다. 정답은 아니지만 집을 고를 때 흔히 쓰는 어림 기준입니다.</li>
+<li><strong>관리비에 뭐가 들어 있는지</strong>: 같은 월세라도 관리비에 인터넷·수도가 포함됐는지에 따라 실제 부담이 달라집니다. 집 볼 때 확인할 것은 <a href="/first-home/room-checklist/">자취방 체크리스트</a>에 정리했습니다.</li>
+<li><strong>겨울 난방비</strong>: 개별난방 원룸은 겨울 가스비가 여름보다 몇 배 나오기도 합니다. 공과금 칸은 겨울 기준으로 넉넉히 잡으세요.</li>
+<li><strong>첫 달은 예상보다 더 나갑니다</strong>: 처음 몇 달은 없던 물건을 계속 사게 됩니다. 비상금을 따로 두고 시작하세요.</li>
+<li><strong>전세가 나을지</strong>: 같은 집을 전세로 구할 수 있다면 <a href="/first-home/jeonse-vs-wolse/">전세 vs 월세 계산기</a>로 비교해 보세요. 청년이라면 <a href="/youth/youth-housing/">청년 월세 지원·전세대출</a>도 확인하세요.</li>
+</ul>
+<p>월급 전체 예산은 <a href="/first-salary/budget-planner/">월 예산 짜기 계산기</a>에서 저축까지 함께 나눠 볼 수 있습니다.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>자취 한 달 생활비는 얼마 드나요?</h3>
+<p>사는 곳과 생활 습관에 따라 크게 다릅니다. 수도권 원룸 월세 55만원을 가정한 이 계산기 예시로는 월세·관리비·공과금·통신·교통·식비·생활용품·기타를 합쳐 한 달 약 153만원입니다. 내 조건을 넣어 계산해 보세요.</p>
+<h3>자취 시작할 때 목돈은 얼마나 필요한가요?</h3>
+<p>보증금에 이사비, 중개보수, 가구·가전, 초기 생필품, 첫 달 월세를 더한 금액이 필요합니다. 보증금 1,000만원 원룸 예시로는 약 1,170만원입니다.</p>
+<h3>월세는 월급의 몇 퍼센트가 적당한가요?</h3>
+<p>월세와 관리비를 합쳐 실수령액의 30% 안쪽이 흔히 쓰는 어림 기준입니다. 이보다 높으면 저축과 비상금을 모으기 어려워집니다.</p>
+
+<p class="note">기본값은 설명을 위한 예시이며 통계 평균이 아닙니다. 지역, 집 형태, 생활 습관에 따라 생활비는 크게 달라지니 본인 금액을 넣어 계산하세요.</p>

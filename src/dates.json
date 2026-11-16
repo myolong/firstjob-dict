@@ -89,6 +89,11 @@
   "modified": "2026-11-12",
   "hash": "e1a5e4d017529b9c5d87e17f679bd761"
  },
+ "src/sections/first-home/guides/living-cost.html": {
+  "published": "2026-11-16",
+  "modified": "2026-11-16",
+  "hash": "164049c93a3568aca1753c5e197a78be"
+ },
  "src/sections/first-home/guides/move-in-report.html": {
   "published": "2026-11-03",
   "modified": "2026-11-07",
@@ -101,13 +106,13 @@
  },
  "src/sections/first-home/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-12",
-  "hash": "e96b1f0a93af6677fe79aeba596dd6e8"
+  "modified": "2026-11-16",
+  "hash": "b09afbe0e994bf00617cd7870f691519"
  },
  "src/sections/first-home/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-12",
-  "hash": "c1bdb15932b2bd691142cf64393041a3"
+  "modified": "2026-11-16",
+  "hash": "fd8a63d561ff94cbe0c2da3bc9da7d5f"
  },
  "src/sections/first-salary/guides/account-split.html": {
   "published": "2026-11-03",
@@ -269,6 +274,11 @@
   "modified": "2026-11-09",
   "hash": "b6d3d02c719a77fc0e283300e41c06d3"
  },
+ "src/sections/pay/guides/parental-leave-pay.html": {
+  "published": "2026-11-16",
+  "modified": "2026-11-16",
+  "hash": "f894b71c5481e4943d44e7b00ca3c9f8"
+ },
  "src/sections/pay/guides/resignation.html": {
   "published": "2026-11-06",
   "modified": "2026-11-07",
@@ -301,13 +311,13 @@
  },
  "src/sections/pay/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-06",
-  "hash": "b82a18ffac52b424fbc8009504a61772"
+  "modified": "2026-11-16",
+  "hash": "6ff44912b3425a6145ca74ad859b0553"
  },
  "src/sections/pay/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-06",
-  "hash": "9209ff6b8fabaf24df64852efd1cf64a"
+  "modified": "2026-11-16",
+  "hash": "3a3484779cb35eb40f4ddc81f2e5d890"
  },
  "src/sections/youth/guides/job-leap-incentive.html": {
   "published": "2026-11-03",
