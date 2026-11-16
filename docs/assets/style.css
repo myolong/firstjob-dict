@@ -244,3 +244,27 @@ main h1{font-family:var(--hand);font-weight:400;font-size:clamp(2.1rem,5.5vw,2.8
 .calc-col i{font-style:normal;color:var(--pen)}
 .calc-col a:hover b{color:var(--pen)}
 @media(max-width:760px){.calc-cols{grid-template-columns:1fr}.calc-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.calc-col a{flex-wrap:wrap;row-gap:0}.calc-col span{min-width:0}}
+
+/* 홈 자주 쓰는 계산기: C안 포스트잇 쪽지 (2026-11-16) */
+.calc-tabs button{font-family:var(--hand);font-size:21px;padding:2px 14px;border-radius:4px;box-shadow:2px 2px 0 var(--ink)}
+.calc-cols{gap:26px 22px;margin-top:8px}
+.calc-col{border:0;box-shadow:3px 5px 0 rgba(0,0,0,.10);border-radius:2px;position:relative;padding:22px 18px 12px;background:#fff3a8}
+.calc-col::before{content:"";position:absolute;left:50%;top:-11px;width:96px;height:22px;margin-left:-48px;background:color-mix(in srgb,var(--pen) 38%,transparent);transform:rotate(-2deg)}
+.calc-col[data-g=g0]{background:#fff3a8;transform:rotate(-.6deg)}
+.calc-col[data-g=g1]{background:#dcefff;transform:rotate(.5deg)}
+.calc-col[data-g=g2]{background:#ffe0e3;transform:rotate(.4deg)}
+.calc-col[data-g=g3]{background:#e2f5d6;transform:rotate(-.5deg)}
+.calc-col[data-g=g1]::before{background:rgba(255,200,80,.55);transform:rotate(3deg)}
+.calc-col[data-g=g2]::before{background:rgba(120,190,255,.5)}
+.calc-col[data-g=g3]::before{background:rgba(255,140,160,.45);transform:rotate(2deg)}
+.calc-col h3{font-family:var(--hand);font-weight:400;font-size:30px;margin:0 0 4px;line-height:1.1}
+.calc-col ol{counter-reset:c}
+.calc-col li{border-top:1px dashed rgba(0,0,0,.18)}
+.calc-col a{counter-increment:c;padding:9px 4px}
+.calc-col a::before{content:counter(c);flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;align-self:center}
+.calc-col span{color:#5d594f}
+.calc-col i{display:none}
+.calc-col a:hover b{background:linear-gradient(transparent 55%,#fff 55%);color:var(--ink)}
+.calc-col a:hover::before{background:var(--pen);color:#fff;border-color:var(--pen)}
+@media(max-width:760px){.calc-col{transform:none !important}}
+@media print{.calc-col{transform:none !important;box-shadow:none;border:1px solid #999}.calc-col::before{display:none}}
