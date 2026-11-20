@@ -730,4 +730,119 @@
     }
     bind(f, run);
   })();
+
+  /* 20. 2027 연차 플래너 */
+  (function () {
+    var f = $('calc-leaveplan');
+    if (!f) return;
+    var HOL = {
+      '2027-01-01': '1월 1일', '2027-02-06': '설날 연휴', '2027-02-07': '설날', '2027-02-08': '설날 연휴', '2027-02-09': '대체공휴일(설)',
+      '2027-03-01': '3·1절', '2027-05-01': '노동절', '2027-05-03': '대체공휴일(노동절)', '2027-05-05': '어린이날', '2027-05-13': '부처님오신날',
+      '2027-06-06': '현충일', '2027-07-17': '제헌절', '2027-07-19': '대체공휴일(제헌절)', '2027-08-15': '광복절', '2027-08-16': '대체공휴일(광복절)',
+      '2027-09-14': '추석 연휴', '2027-09-15': '추석', '2027-09-16': '추석 연휴', '2027-10-03': '개천절', '2027-10-04': '대체공휴일(개천절)',
+      '2027-10-09': '한글날', '2027-10-11': '대체공휴일(한글날)', '2027-12-25': '기독탄신일', '2027-12-27': '대체공휴일(성탄절)', '2028-01-01': '1월 1일'
+    };
+    var KEY = 'fj-leaveplan-2027', DAY = 864e5, WD = '일월화수목금토';
+    var T0 = Date.UTC(2026, 11, 26), N = 380; // 2026-12-26 ~ 2028-01-09
+    var Y0 = Math.round((Date.UTC(2027, 0, 1) - T0) / DAY), Y1 = Math.round((Date.UTC(2027, 11, 31) - T0) / DAY);
+    function dt(i) { return new Date(T0 + i * DAY); }
+    function key(i) { return dt(i).toISOString().slice(0, 10); }
+    function md(i) { var d = dt(i); return (d.getUTCMonth() + 1) + '월 ' + d.getUTCDate() + '일'; }
+    function mdw(i) { return md(i) + '(' + WD[dt(i).getUTCDay()] + ')'; }
+    var off = [], hol = [];
+    for (var i = 0; i < N; i++) { var w = dt(i).getUTCDay(); hol[i] = HOL[key(i)] || ''; off[i] = w === 0 || w === 6 || !!hol[i]; }
+    // 쉬는 날 묶음(run)
+    var runs = [];
+    for (i = 0; i < N; i++) if (off[i] && (i === 0 || !off[i - 1])) { var j = i; while (j + 1 < N && off[j + 1]) j++; var h = false; for (var x = i; x <= j; x++) if (hol[x]) h = true; runs.push({ s: i, e: j, h: h }); }
+    function cands(maxK) {
+      var c = [];
+      for (var a = 0; a < runs.length; a++) for (var b = a + 1; b < runs.length; b++) {
+        var k = 0, h = false;
+        for (var r = a; r <= b; r++) { if (runs[r].h) h = true; if (r > a) k += runs[r].s - runs[r - 1].e - 1; }
+        if (k > maxK) break;
+        if (!h || runs[b].e < Y0 || runs[a].s > Y1 || runs[a].s < Y0 - 2) continue;
+        var days = []; for (r = a + 1; r <= b; r++) for (x = runs[r - 1].e + 1; x < runs[r].s; x++) days.push(x);
+        if (days[0] < Y0 || days[days.length - 1] > Y1) continue;
+        c.push({ s: runs[a].s, e: runs[b].e, k: k, L: runs[b].e - runs[a].s + 1, days: days });
+      }
+      return c;
+    }
+    function plan(B, maxK) {
+      var c = cands(maxK).sort(function (p, q) { return p.e - q.e; }), n = c.length;
+      var dp = [], ch = [];
+      for (var t = 0; t <= n; t++) { dp.push([]); ch.push([]); for (var b = 0; b <= B; b++) { dp[t][b] = 0; ch[t][b] = false; } }
+      for (t = 1; t <= n; t++) {
+        for (b = 0; b <= B; b++) dp[t][b] = dp[t - 1][b];
+        var w = c[t - 1], p = 0;
+        for (var q = t - 1; q >= 1; q--) if (c[q - 1].e < w.s - 1) { p = q; break; }
+        for (b = w.k; b <= B; b++) {
+          var v = dp[p][b - w.k] + w.L * 100 - w.k;
+          if (v > dp[t][b]) { dp[t][b] = v; ch[t][b] = p + 1; }
+        }
+      }
+      var res = [], bb = B;
+      for (t = n; t >= 1;) { if (ch[t][bb]) { var w2 = c[t - 1]; res.push(w2); bb -= w2.k; t = ch[t][bb + w2.k] - 1; } else t--; }
+      return res.reverse();
+    }
+    var leave = {};
+    function load() { try { var v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && v.days) { leave = {}; v.days.forEach(function (d) { leave[d] = 1; }); return true; } } catch (e) {} return false; }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify({ days: Object.keys(leave) })); } catch (e) {} }
+    function auto() {
+      var B = Math.max(0, Math.min(25, Math.floor(num('lp-budget')))), mk = +$('lp-max').value || 4;
+      leave = {}; plan(B, mk).forEach(function (w) { w.days.forEach(function (d) { leave[key(d)] = 1; }); }); save(); draw();
+    }
+    function isRest(i) { return off[i] || !!leave[key(i)]; }
+    function draw() {
+      var B = Math.floor(num('lp-budget')), used = 0, list = [];
+      for (var i = Y0; i <= Y1; i++) if (leave[key(i)]) { used++; list.push(i); }
+      var streaks = [];
+      for (i = Y0 - 2; i < N; i++) if (isRest(i) && !isRest(i - 1)) { var j = i; while (j + 1 < N && isRest(j + 1)) j++; if (j - i + 1 >= 3 && j >= Y0 && i <= Y1) { var k = 0; for (var x = i; x <= j; x++) if (leave[key(x)]) k++; streaks.push({ s: i, e: j, k: k }); } i = j; }
+      var big = streaks.filter(function (s) { return s.k > 0; }), longest = streaks.reduce(function (m, s) { return Math.max(m, s.e - s.s + 1); }, 0);
+      var total = big.reduce(function (a, s) { return a + s.e - s.s + 1; }, 0);
+      var html = '<p class="big">연차 ' + used + '일로 연휴 ' + big.length + '번<small>연차 낀 연휴 합계 ' + total + '일 쉼, 가장 긴 연휴 ' + longest + '일</small></p>';
+      if (B && used > B) html += '<p class="warn">넣은 연차 일수(' + B + '일)보다 ' + (used - B) + '일 더 썼습니다.</p>';
+      else if (B) html += '<p class="note">남은 연차 ' + (B - used) + '일</p>';
+      if (streaks.length) {
+        html += '<table class="rows"><tbody>' + streaks.map(function (s) {
+          var end = dt(s.e).getUTCFullYear() > 2027 ? '2028년 ' + md(s.e) : md(s.e);
+          return '<tr><td>' + md(s.s) + ' ~ ' + end + (s.k ? ' <em class="lp-k">연차 ' + s.k + '일</em>' : '') + '</td><td>' + (s.e - s.s + 1) + '일</td></tr>';
+        }).join('') + '</tbody></table>';
+      }
+      if (list.length) html += '<p class="lp-list"><b>연차 쓰는 날</b> ' + list.map(mdw).join(', ') + ' <button type="button" id="lp-copy">목록 복사</button></p>';
+      $('lp-out').innerHTML = html;
+      var cp = $('lp-copy');
+      if (cp) cp.onclick = function () {
+        var t = '2027 연차 계획: ' + list.map(mdw).join(', ');
+        try { navigator.clipboard.writeText(t).then(function () { cp.textContent = '복사됨'; }, function () { cp.textContent = '복사 실패'; }); } catch (e) { cp.textContent = '복사 실패'; }
+      };
+      var inRun = {};
+      streaks.forEach(function (s) { for (var x = s.s; x <= s.e; x++) inRun[x] = 1; });
+      var cal = '';
+      for (var m = 0; m < 12; m++) {
+        var first = Math.round((Date.UTC(2027, m, 1) - T0) / DAY), dim = new Date(Date.UTC(2027, m + 1, 0)).getUTCDate();
+        cal += '<div class="lp-m"><h4>' + (m + 1) + '월</h4><div class="lp-g">' + '일월화수목금토'.split('').map(function (c) { return '<span class="lp-h">' + c + '</span>'; }).join('');
+        for (var p = 0; p < dt(first).getUTCDay(); p++) cal += '<span></span>';
+        for (var d = 0; d < dim; d++) {
+          var ix = first + d, kk = key(ix), cls = [], w = dt(ix).getUTCDay();
+          if (hol[ix]) cls.push('hol'); else if (w === 0 || w === 6) cls.push('we');
+          if (leave[kk]) cls.push('lv');
+          if (inRun[ix]) cls.push('run');
+          var can = !off[ix];
+          cal += can ? '<button type="button" class="' + cls.join(' ') + '" data-d="' + kk + '" aria-pressed="' + (leave[kk] ? 'true' : 'false') + '" title="' + mdw(ix) + (leave[kk] ? ' 연차' : ' 눌러서 연차 넣기') + '">' + (d + 1) + '</button>'
+                      : '<span class="' + cls.join(' ') + '" title="' + mdw(ix) + (hol[ix] ? ' ' + hol[ix] : '') + '">' + (d + 1) + '</span>';
+        }
+        cal += '</div></div>';
+      }
+      $('lp-cal').innerHTML = cal;
+    }
+    $('lp-cal').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-d]'); if (!b) return;
+      var k = b.getAttribute('data-d'); if (leave[k]) delete leave[k]; else leave[k] = 1; save(); draw();
+    });
+    $('lp-auto').onclick = auto;
+    $('lp-clear').onclick = function () { leave = {}; save(); draw(); };
+    $('lp-budget').addEventListener('change', auto);
+    $('lp-max').addEventListener('change', auto);
+    if (load()) draw(); else auto();
+  })();
 })();

@@ -269,6 +269,11 @@
   "modified": "2026-11-10",
   "hash": "7bf9fad21ddbc6041f915c73daf0db80"
  },
+ "src/sections/pay/guides/annual-leave-planner.html": {
+  "published": "2026-11-20",
+  "modified": "2026-11-20",
+  "hash": "31fdf39ff8e392832ce5329f46356b7b"
+ },
  "src/sections/pay/guides/annual-leave.html": {
   "published": "2026-11-03",
   "modified": "2026-11-16",
@@ -286,8 +291,8 @@
  },
  "src/sections/pay/guides/parental-leave-pay.html": {
   "published": "2026-11-16",
-  "modified": "2026-11-16",
-  "hash": "7d73d6f2ccba529c1f30b40d02906af7"
+  "modified": "2026-11-20",
+  "hash": "fe64fea60d3ad27055d603d23c6b9624"
  },
  "src/sections/pay/guides/resignation.html": {
   "published": "2026-11-06",
@@ -316,13 +321,13 @@
  },
  "src/sections/pay/guides/weekly-holiday-pay.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-16",
-  "hash": "4a6bf85f9e3ad4bf3c72c92c220b3fa9"
+  "modified": "2026-11-20",
+  "hash": "d025d8b48c8ac3207e5bd25dd8db94cc"
  },
  "src/sections/pay/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-16",
-  "hash": "6ff44912b3425a6145ca74ad859b0553"
+  "modified": "2026-11-20",
+  "hash": "9b56cea93c9599e9fc010361a12847fc"
  },
  "src/sections/pay/section.json": {
   "published": "2026-11-03",
