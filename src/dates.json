@@ -1,8 +1,8 @@
 {
  "src/sections/first-car/guides/buying-steps.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "2afc0fc6f6962f1a1a774aed837d4222"
+  "modified": "2026-11-23",
+  "hash": "035038eda1c48e7b4cd8bd10cab9f3a7"
  },
  "src/sections/first-car/guides/car-acquisition-tax.html": {
   "published": "2026-11-03",
@@ -71,8 +71,8 @@
  },
  "src/sections/first-day/guides/first-day-checklist.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "b1946876ed95ec2df040589f701677e4"
+  "modified": "2026-11-23",
+  "hash": "c581d422de62c260d6054adc8bc9878c"
  },
  "src/sections/first-day/guides/first-week.html": {
   "published": "2026-11-03",
@@ -101,8 +101,8 @@
  },
  "src/sections/first-home/guides/living-cost.html": {
   "published": "2026-11-16",
-  "modified": "2026-11-16",
-  "hash": "624f7e653cc46c4e1fad272dacbd18d6"
+  "modified": "2026-11-23",
+  "hash": "a757d2b4113719ec1f085dfa86bb494e"
  },
  "src/sections/first-home/guides/move-in-report.html": {
   "published": "2026-11-03",
@@ -116,8 +116,8 @@
  },
  "src/sections/first-home/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-16",
-  "hash": "b09afbe0e994bf00617cd7870f691519"
+  "modified": "2026-11-23",
+  "hash": "a1e43378e81fea7735ba6c569f1fa574"
  },
  "src/sections/first-home/section.json": {
   "published": "2026-11-03",
@@ -136,8 +136,8 @@
  },
  "src/sections/first-salary/guides/check-vs-credit-card.html": {
   "published": "2026-11-04",
-  "modified": "2026-11-07",
-  "hash": "4cffc5240fc8c6a5b94dec8e5a472d75"
+  "modified": "2026-11-23",
+  "hash": "682996dc33288ce18b6cb5fdd8d42d1c"
  },
  "src/sections/first-salary/guides/credit-score.html": {
   "published": "2026-11-04",
@@ -181,8 +181,8 @@
  },
  "src/sections/insurance/guides/find-my-insurance.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "9c60582b5a8855f1e144e910133367c5"
+  "modified": "2026-11-23",
+  "hash": "cfdb66a8d5abc164686586ba17ff3ce2"
  },
  "src/sections/insurance/guides/health-checkup.html": {
   "published": "2026-11-09",
@@ -216,8 +216,8 @@
  },
  "src/sections/insurance/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "66e73ddf68a442d8371e5ad46de33dc4"
+  "modified": "2026-11-23",
+  "hash": "b05000e4f62d744cea7b452ea9f5f05b"
  },
  "src/sections/insurance/section.json": {
   "published": "2026-11-03",
@@ -226,18 +226,18 @@
  },
  "src/sections/office/guides/abbreviations.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "9eaf90d7c80df9d51fb2b6d941921e8f"
+  "modified": "2026-11-23",
+  "hash": "e7addafc390a8fb74d11275023ac39fa"
  },
  "src/sections/office/guides/business-loanwords.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "8da5c8f9f9e089cbb38267884ff505d7"
+  "modified": "2026-11-23",
+  "hash": "7df1122d0c7a3d9bb9635cf34cd87c5f"
  },
  "src/sections/office/guides/business-manners.html": {
   "published": "2026-11-10",
-  "modified": "2026-11-10",
-  "hash": "6419b541354506d54f7dccbdf5a39cac"
+  "modified": "2026-11-23",
+  "hash": "d394731b1fa25d2d8e1bba2c6adf5719"
  },
  "src/sections/office/guides/email-basics.html": {
   "published": "2026-11-03",
@@ -248,6 +248,11 @@
   "published": "2026-11-07",
   "modified": "2026-11-07",
   "hash": "396a05345a9da78d10bc67faeceb7c9d"
+ },
+ "src/sections/office/guides/hangul-abbreviations.html": {
+  "published": "2026-11-23",
+  "modified": "2026-11-23",
+  "hash": "ba0fc1856e863bd26d97539a1b5d19db"
  },
  "src/sections/office/guides/reporting.html": {
   "published": "2026-11-03",
@@ -261,13 +266,13 @@
  },
  "src/sections/office/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-10",
-  "hash": "8175a5d6f6a8781698797dd013e4c400"
+  "modified": "2026-11-23",
+  "hash": "cbb6ea24da9cffb8c0534be01030e89b"
  },
  "src/sections/office/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-10",
-  "hash": "7bf9fad21ddbc6041f915c73daf0db80"
+  "modified": "2026-11-23",
+  "hash": "d1055656d6d29a4f9802589631215ce9"
  },
  "src/sections/pay/guides/annual-leave-planner.html": {
   "published": "2026-11-20",
