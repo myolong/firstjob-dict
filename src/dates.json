@@ -144,6 +144,11 @@
   "modified": "2026-11-07",
   "hash": "c38ddd43f73243ad3d6b5d2e333df596"
  },
+ "src/sections/first-salary/guides/hometax-year-end-guide.html": {
+  "published": "2026-11-24",
+  "modified": "2026-11-24",
+  "hash": "b8a1c1f2c18cbf1e2c7b3c71bcf6d11a"
+ },
  "src/sections/first-salary/guides/payslip.html": {
   "published": "2026-11-03",
   "modified": "2026-11-07",
@@ -161,13 +166,13 @@
  },
  "src/sections/first-salary/guides/year-end-tax.html": {
   "published": "2026-11-06",
-  "modified": "2026-11-07",
-  "hash": "e12bb8d5bd2c7bcf4ecb41e0eabbac70"
+  "modified": "2026-11-24",
+  "hash": "6806911c543b28aa5f7bef39899c89d6"
  },
  "src/sections/first-salary/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-12",
-  "hash": "c254a92d2ae78867720e22881da2837e"
+  "modified": "2026-11-24",
+  "hash": "b1b1d403205c175bec2eb683787f58c0"
  },
  "src/sections/first-salary/section.json": {
   "published": "2026-11-03",
