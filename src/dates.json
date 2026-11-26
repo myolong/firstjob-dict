@@ -299,6 +299,11 @@
   "modified": "2026-11-09",
   "hash": "b6d3d02c719a77fc0e283300e41c06d3"
  },
+ "src/sections/pay/guides/minimum-wage-2027.html": {
+  "published": "2026-11-26",
+  "modified": "2026-11-26",
+  "hash": "bb610408cdcad218a8ac4ad8ab9cc500"
+ },
  "src/sections/pay/guides/parental-leave-pay.html": {
   "published": "2026-11-16",
   "modified": "2026-11-20",
@@ -336,8 +341,8 @@
  },
  "src/sections/pay/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-20",
-  "hash": "9b56cea93c9599e9fc010361a12847fc"
+  "modified": "2026-11-26",
+  "hash": "81ce1dc1a161222b223cfb1ffcaf403e"
  },
  "src/sections/pay/section.json": {
   "published": "2026-11-03",
