@@ -731,6 +731,33 @@
     bind(f, run);
   })();
 
+  /* 21. 깡통전세 위험 비율 */
+  (function () {
+    var f = $('calc-registry');
+    if (!f) return;
+    function run() {
+      var price = num('rg-price'), loan = num('rg-loan'), prior = num('rg-prior'), mine = num('rg-mine'), rate = num('rg-rate');
+      if (!price || !mine) { $('rg-out').innerHTML = '<p class="note">집 시세와 내 보증금을 넣으면 계산됩니다.</p>'; return; }
+      if (!rate || rate > 100) rate = 80;
+      var ahead = loan + prior, ratio = (ahead + mine) / price * 100;
+      var sale = price * rate / 100, back = Math.max(0, Math.min(mine, sale - ahead)), lost = mine - back;
+      var lv = ratio < 60 ? '비교적 여유' : ratio <= 80 ? '주의' : '위험';
+      var html = '<p class="big">' + ratio.toFixed(0) + '% · ' + lv + '<small>(앞선 빚 + 내 보증금) ÷ 시세</small></p>';
+      html += rows([
+        ['앞선 빚 (채권최고액 + 앞선 보증금)', won(ahead)],
+        ['앞선 빚 + 내 보증금', won(ahead + mine)],
+        ['시세의 ' + rate + '%에 낙찰되면 받는 돈 (대략)', won(sale)],
+        ['그중 내 보증금으로 돌아올 돈 (대략)', won(back)],
+        ['못 돌려받을 수 있는 돈 (대략)', won(lost)]
+      ]);
+      if (ratio > 80) html += '<p class="warn">앞선 빚과 보증금이 시세에 너무 가깝습니다. 집값이 조금만 떨어져도 보증금을 다 돌려받지 못할 수 있으니 보증금을 낮추거나 다른 집을 찾아보세요.</p>';
+      else if (ratio >= 60) html += '<p class="warn">전세보증금 반환보증 가입이 되는 집인지 계약 전에 꼭 확인하세요.</p>';
+      if (lost > 0 && ratio <= 80) html += '<p class="note">낙찰가율을 낮게 잡으면 못 돌려받는 돈이 생길 수 있습니다. 보증보험으로 대비하세요.</p>';
+      $('rg-out').innerHTML = html;
+    }
+    bind(f, run);
+  })();
+
   /* 20. 2027 연차 플래너 */
   (function () {
     var f = $('calc-leaveplan');
