@@ -91,13 +91,13 @@
  },
  "src/sections/first-home/guides/first-week.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-09",
-  "hash": "a417d5bb8a7872eb022113771ddcbb60"
+  "modified": "2026-11-27",
+  "hash": "2081d6cb88f6e47a5262032b9ab554d8"
  },
  "src/sections/first-home/guides/jeonse-vs-wolse.html": {
   "published": "2026-11-12",
-  "modified": "2026-11-16",
-  "hash": "583117d3675c370fce3f9ec037f8d05a"
+  "modified": "2026-11-27",
+  "hash": "cbe1077368ee95df9cb4e133c587d5d2"
  },
  "src/sections/first-home/guides/living-cost.html": {
   "published": "2026-11-16",
@@ -106,23 +106,28 @@
  },
  "src/sections/first-home/guides/move-in-report.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "6e2d43d1bed4be2ddbc8f52f0c6eca6b"
+  "modified": "2026-11-27",
+  "hash": "b03dd082cf11392cafabffa5d9c4df45"
+ },
+ "src/sections/first-home/guides/registry-check.html": {
+  "published": "2026-11-27",
+  "modified": "2026-11-27",
+  "hash": "00f177aaa3ca3408313f93527bc7cf19"
  },
  "src/sections/first-home/guides/room-checklist.html": {
   "published": "2026-11-03",
-  "modified": "2026-11-07",
-  "hash": "363cb6d8c94aa2706e5e8023579a2b1c"
+  "modified": "2026-11-27",
+  "hash": "c05da1bc8883c2724e420f37063f8058"
  },
  "src/sections/first-home/items.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-23",
-  "hash": "a1e43378e81fea7735ba6c569f1fa574"
+  "modified": "2026-11-27",
+  "hash": "de058e7817e9156419a7413024c4d116"
  },
  "src/sections/first-home/section.json": {
   "published": "2026-11-03",
-  "modified": "2026-11-16",
-  "hash": "fd8a63d561ff94cbe0c2da3bc9da7d5f"
+  "modified": "2026-11-27",
+  "hash": "d92418123260d0c56d8ad0ebfb5b00b5"
  },
  "src/sections/first-salary/guides/account-split.html": {
   "published": "2026-11-03",
@@ -366,8 +371,8 @@
  },
  "src/sections/youth/guides/transit-pass-calculator.html": {
   "published": "2026-11-11",
-  "modified": "2026-11-16",
-  "hash": "38ff3fe189b5a5d7df02cba24dfe26b2"
+  "modified": "2026-11-27",
+  "hash": "d3c040937181b75414ac914e77567831"
  },
  "src/sections/youth/guides/youth-housing.html": {
   "published": "2026-11-03",
